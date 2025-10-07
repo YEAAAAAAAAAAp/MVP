@@ -1,0 +1,36 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow1">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bg1)" filter="url(#shadow1)"/>
+  
+  <!-- Paint brush strokes -->
+  <path d="M50 100 Q150 80 250 120 T350 100" stroke="#fff" stroke-width="8" fill="none" opacity="0.7"/>
+  <path d="M80 140 Q180 160 280 140 T380 160" stroke="#fff" stroke-width="6" fill="none" opacity="0.5"/>
+  <path d="M60 180 Q160 200 260 180 T360 200" stroke="#fff" stroke-width="4" fill="none" opacity="0.3"/>
+  
+  <!-- Paint palette -->
+  <ellipse cx="320" cy="220" rx="25" ry="15" fill="#fff" opacity="0.9"/>
+  <circle cx="310" cy="220" r="4" fill="#ff6b6b"/>
+  <circle cx="320" cy="215" r="4" fill="#4ecdc4"/>
+  <circle cx="330" cy="220" r="4" fill="#ffe66d"/>
+  <circle cx="320" cy="225" r="4" fill="#a8e6cf"/>
+  
+  <!-- Title -->
+  <text x="200" y="50" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="24" font-weight="bold" opacity="0.9">
+    꿈을 키우는 손
+  </text>
+  
+  <!-- Artist signature -->
+  <text x="360" y="280" text-anchor="end" fill="#fff" font-family="Arial, sans-serif" font-size="12" opacity="0.7">
+    김예술
+  </text>
+</svg>

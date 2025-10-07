@@ -1,0 +1,50 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="artistBg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#34495e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c3e50;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="face4" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" style="stop-color:#ddd6fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c7d2fe;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="100" cy="100" r="100" fill="url(#artistBg4)"/>
+  
+  <!-- Face -->
+  <ellipse cx="100" cy="90" rx="35" ry="40" fill="url(#face4)"/>
+  
+  <!-- Hair (modern, tech-style) -->
+  <path d="M65 55 Q100 40 135 55 Q140 75 135 90 Q100 85 65 90 Q60 75 65 55" fill="#1a202c"/>
+  <rect x="85" y="50" width="2" height="8" fill="#3498db"/>
+  <rect x="95" y="48" width="2" height="10" fill="#3498db"/>
+  <rect x="105" y="48" width="2" height="10" fill="#3498db"/>
+  <rect x="115" y="50" width="2" height="8" fill="#3498db"/>
+  
+  <!-- Eyes -->
+  <circle cx="88" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="112" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="89" cy="84" r="1" fill="#ffffff"/>
+  <circle cx="113" cy="84" r="1" fill="#ffffff"/>
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="95" rx="1.5" ry="2" fill="#6366f1"/>
+  
+  <!-- Mouth -->
+  <path d="M95 105 Q100 108 105 105" stroke="#2d3436" stroke-width="1.5" fill="none"/>
+  
+  <!-- Digital elements -->
+  <rect x="140" y="130" width="4" height="4" fill="#3498db"/>
+  <rect x="148" y="130" width="4" height="4" fill="#e74c3c"/>
+  <rect x="156" y="130" width="4" height="4" fill="#f39c12"/>
+  <rect x="140" y="138" width="4" height="4" fill="#2ecc71"/>
+  <rect x="148" y="138" width="4" height="4" fill="#9b59b6"/>
+  <rect x="156" y="138" width="4" height="4" fill="#e67e22"/>
+  
+  <!-- Circuit lines -->
+  <line x1="145" y1="150" x2="155" y2="150" stroke="#3498db" stroke-width="1"/>
+  <line x1="150" y1="145" x2="150" y2="155" stroke="#3498db" stroke-width="1"/>
+</svg>

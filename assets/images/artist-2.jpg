@@ -1,0 +1,44 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="artistBg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="face2" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" style="stop-color:#ffeaa7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fdcb6e;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="100" cy="100" r="100" fill="url(#artistBg2)"/>
+  
+  <!-- Face -->
+  <ellipse cx="100" cy="90" rx="35" ry="40" fill="url(#face2)"/>
+  
+  <!-- Hair -->
+  <path d="M65 55 Q100 40 135 55 Q145 75 135 95 Q100 90 65 95 Q55 75 65 55" fill="#636e72"/>
+  <circle cx="80" cy="65" r="8" fill="#636e72"/>
+  <circle cx="120" cy="65" r="8" fill="#636e72"/>
+  
+  <!-- Eyes -->
+  <circle cx="88" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="112" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="89" cy="84" r="1" fill="#ffffff"/>
+  <circle cx="113" cy="84" r="1" fill="#ffffff"/>
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="95" rx="1.5" ry="2" fill="#e17055"/>
+  
+  <!-- Mouth -->
+  <path d="M95 105 Q100 108 105 105" stroke="#2d3436" stroke-width="1.5" fill="none"/>
+  
+  <!-- Glasses -->
+  <circle cx="88" cy="85" r="12" fill="none" stroke="#2d3436" stroke-width="2"/>
+  <circle cx="112" cy="85" r="12" fill="none" stroke="#2d3436" stroke-width="2"/>
+  <line x1="100" y1="85" x2="100" y2="85" stroke="#2d3436" stroke-width="2"/>
+  
+  <!-- Abstract symbol -->
+  <circle cx="150" cy="140" r="8" fill="#ffffff" opacity="0.8"/>
+  <rect x="146" y="136" width="8" height="8" fill="none" stroke="#2d3436" stroke-width="1"/>
+</svg>

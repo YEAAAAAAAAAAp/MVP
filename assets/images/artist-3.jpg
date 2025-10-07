@@ -1,0 +1,48 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="artistBg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00f2fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#43e97b;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="face3" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" style="stop-color:#f8b500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fad390;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="100" cy="100" r="100" fill="url(#artistBg3)"/>
+  
+  <!-- Face -->
+  <ellipse cx="100" cy="90" rx="35" ry="40" fill="url(#face3)"/>
+  
+  <!-- Hair (longer, artistic style) -->
+  <path d="M65 50 Q100 35 135 50 Q145 70 140 100 Q100 95 60 100 Q55 70 65 50" fill="#2d3436"/>
+  <path d="M60 90 Q50 100 55 110" fill="#2d3436"/>
+  <path d="M140 90 Q150 100 145 110" fill="#2d3436"/>
+  
+  <!-- Eyes -->
+  <circle cx="88" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="112" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="89" cy="84" r="1" fill="#ffffff"/>
+  <circle cx="113" cy="84" r="1" fill="#ffffff"/>
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="95" rx="1.5" ry="2" fill="#e17055"/>
+  
+  <!-- Mouth -->
+  <path d="M95 105 Q100 108 105 105" stroke="#2d3436" stroke-width="1.5" fill="none"/>
+  
+  <!-- Color swatches (mixed media) -->
+  <rect x="140" y="130" width="6" height="6" fill="#e74c3c"/>
+  <rect x="148" y="130" width="6" height="6" fill="#3498db"/>
+  <rect x="156" y="130" width="6" height="6" fill="#f39c12"/>
+  <rect x="140" y="138" width="6" height="6" fill="#2ecc71"/>
+  <rect x="148" y="138" width="6" height="6" fill="#9b59b6"/>
+  <rect x="156" y="138" width="6" height="6" fill="#e67e22"/>
+  
+  <!-- Musical note (symphony reference) -->
+  <circle cx="145" cy="155" r="3" fill="#ffffff"/>
+  <rect x="148" y="145" width="1" height="10" fill="#ffffff"/>
+</svg>

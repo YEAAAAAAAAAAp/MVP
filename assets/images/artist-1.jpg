@@ -1,0 +1,43 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="artistBg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="face1" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" style="stop-color:#fdbcb4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fab1a0;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="100" cy="100" r="100" fill="url(#artistBg1)"/>
+  
+  <!-- Face -->
+  <ellipse cx="100" cy="90" rx="35" ry="40" fill="url(#face1)"/>
+  
+  <!-- Hair -->
+  <path d="M65 60 Q100 45 135 60 Q140 80 130 90 Q100 85 70 90 Q60 80 65 60" fill="#2d3436"/>
+  
+  <!-- Eyes -->
+  <circle cx="88" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="112" cy="85" r="3" fill="#2d3436"/>
+  <circle cx="89" cy="84" r="1" fill="#ffffff"/>
+  <circle cx="113" cy="84" r="1" fill="#ffffff"/>
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="95" rx="1.5" ry="2" fill="#e17055"/>
+  
+  <!-- Mouth -->
+  <path d="M95 105 Q100 108 105 105" stroke="#2d3436" stroke-width="1.5" fill="none"/>
+  
+  <!-- Paint brush (attribute) -->
+  <rect x="140" y="120" width="3" height="25" fill="#8b4513" transform="rotate(25 141.5 132.5)"/>
+  <ellipse cx="141.5" cy="120" rx="2" ry="6" fill="#e17055" transform="rotate(25 141.5 120)"/>
+  
+  <!-- Palette -->
+  <ellipse cx="150" cy="150" rx="15" ry="10" fill="#ffffff" opacity="0.9"/>
+  <circle cx="145" cy="150" r="2" fill="#e74c3c"/>
+  <circle cx="155" cy="148" r="2" fill="#3498db"/>
+  <circle cx="150" cy="155" r="2" fill="#f39c12"/>
+</svg>
