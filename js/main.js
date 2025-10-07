@@ -92,11 +92,13 @@ class ArtistyApp {
 
         const scrollY = window.scrollY;
         
-        if (scrollY > 50) {
+        if (scrollY > 20) {
             header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            header.style.borderBottomColor = 'rgba(229, 229, 229, 0.8)';
+            header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
         } else {
             header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.borderBottomColor = 'var(--color-gray-100)';
             header.style.boxShadow = 'none';
         }
     }
