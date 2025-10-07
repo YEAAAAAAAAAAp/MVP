@@ -74,6 +74,8 @@ class ArtistyApp {
         this.initHeroStats();
         this.initArtworkGrid();
         this.initSearchSuggestions();
+        this.initStorytellingTooltips();
+        this.initImageLazyLoading();
         this.loadDynamicContent();
     }
 
@@ -106,14 +108,14 @@ class ArtistyApp {
         
         if (!navMenu || !mobileToggle) return;
 
-        const isOpen = navMenu.classList.contains('mobile-open');
+        const isOpen = navMenu.classList.contains('active');
         
         if (isOpen) {
-            navMenu.classList.remove('mobile-open');
+            navMenu.classList.remove('active');
             mobileToggle.classList.remove('open');
             document.body.style.overflow = '';
         } else {
-            navMenu.classList.add('mobile-open');
+            navMenu.classList.add('active');
             mobileToggle.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -1132,6 +1134,91 @@ class ArtistyApp {
     handleScroll() {
         this.updateHeaderOnScroll();
         this.hideSuggestions();
+    }
+
+    // Storytelling Tooltips
+    initStorytellingTooltips() {
+        // Find all elements with data-story attribute
+        const storyElements = document.querySelectorAll('[data-story]');
+        
+        storyElements.forEach(element => {
+            this.setupStorytellingTooltip(element);
+        });
+    }
+
+    setupStorytellingTooltip(element) {
+        const story = element.getAttribute('data-story');
+        if (!story) return;
+
+        let tooltip = null;
+
+        // Mouse enter event
+        element.addEventListener('mouseenter', () => {
+            if (tooltip) return;
+
+            tooltip = this.createStorytellingTooltip(story);
+            const imageContainer = element.querySelector('.artwork-image, .artist-image, .auction-image, .editorial-image') || element;
+            
+            // Position tooltip relative to the image container
+            imageContainer.style.position = 'relative';
+            imageContainer.appendChild(tooltip);
+
+            // Trigger animation
+            requestAnimationFrame(() => {
+                tooltip.classList.add('show');
+            });
+        });
+
+        // Mouse leave event
+        element.addEventListener('mouseleave', () => {
+            if (tooltip) {
+                tooltip.classList.remove('show');
+                setTimeout(() => {
+                    if (tooltip && tooltip.parentNode) {
+                        tooltip.parentNode.removeChild(tooltip);
+                    }
+                    tooltip = null;
+                }, 300);
+            }
+        });
+    }
+
+    createStorytellingTooltip(story) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'storytelling-tooltip';
+        tooltip.textContent = story;
+        return tooltip;
+    }
+
+    // Image Lazy Loading
+    initImageLazyLoading() {
+        const images = document.querySelectorAll('img[src]');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.transition = 'opacity 0.3s ease';
+                        img.style.opacity = '1';
+                        imageObserver.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.1
+            });
+
+            images.forEach(img => {
+                img.style.opacity = '0';
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for older browsers
+            images.forEach(img => {
+                img.style.opacity = '1';
+            });
+        }
     }
 
     // Utility Functions
