@@ -1,7 +1,6 @@
-// Artisty - Premium Art Commerce Platform
-// Main JavaScript functionality
+// Artfinder - Premium Art Marketplace
 
-class ArtistyApp {
+class ArtfinderApp {
     constructor() {
         this.init();
     }
@@ -10,6 +9,7 @@ class ArtistyApp {
         this.setupEventListeners();
         this.initializeComponents();
         this.animateOnScroll();
+        this.optimizePerformance();
     }
 
     setupEventListeners() {
@@ -61,11 +61,8 @@ class ArtistyApp {
         this.setupArtworkCardListeners();
         this.setupCollectionCardListeners();
         this.setupArtistCardListeners();
-        this.setupAuctionCardListeners();
-        this.setupEditorialCardListeners();
         this.setupModalListeners();
         this.setupNewsletterListeners();
-        this.setupAuthenticationListeners();
         this.setupSmoothScrolling();
     }
 
@@ -74,7 +71,6 @@ class ArtistyApp {
         this.initHeroStats();
         this.initArtworkGrid();
         this.initSearchSuggestions();
-        this.initStorytellingTooltips();
         this.initImageLazyLoading();
         this.loadDynamicContent();
     }
@@ -176,15 +172,15 @@ class ArtistyApp {
     generateSearchSuggestions(query) {
         const mockSuggestions = [
             'Contemporary Art',
-            'Korean Artists',
-            'Modern Sculpture',
             'Abstract Paintings',
-            'Photography',
             'Digital Art',
-            'Emerging Artists',
-            'Blue Period',
+            'Photography',
+            'Sculpture',
+            'Portrait Art',
             'Landscape Paintings',
-            'Portrait Photography'
+            'Modern Art',
+            'Street Art',
+            'Minimalist Art'
         ];
 
         return mockSuggestions
@@ -390,72 +386,6 @@ class ArtistyApp {
         }, 150);
     }
 
-    // Auction Card Functionality
-    setupAuctionCardListeners() {
-        const auctionCards = document.querySelectorAll('.auction-card');
-        
-        auctionCards.forEach(card => {
-            const bidBtn = card.querySelector('.btn-bid');
-            const watchBtn = card.querySelector('.btn-watch');
-            
-            if (bidBtn) {
-                bidBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.showBidModal(card);
-                });
-            }
-
-            if (watchBtn) {
-                watchBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.toggleWatchAuction(watchBtn);
-                });
-            }
-
-            card.addEventListener('click', () => {
-                const auctionTitle = card.querySelector('h3').textContent;
-                this.showNotification(`Opening "${auctionTitle}" auction details`);
-            });
-        });
-    }
-
-    showBidModal(auctionCard) {
-        const title = auctionCard.querySelector('h3').textContent;
-        const currentBid = auctionCard.querySelector('.amount').textContent;
-        
-        const newBid = prompt(`Place your bid for "${title}"\nCurrent bid: ${currentBid}\n\nEnter your bid amount:`);
-        
-        if (newBid && !isNaN(newBid) && parseFloat(newBid) > 0) {
-            this.showNotification(`Bid placed: $${newBid}`);
-        }
-    }
-
-    toggleWatchAuction(watchBtn) {
-        const isWatching = watchBtn.classList.contains('watching');
-        
-        if (isWatching) {
-            watchBtn.classList.remove('watching');
-            watchBtn.textContent = 'Watch';
-            this.showNotification('Stopped watching auction');
-        } else {
-            watchBtn.classList.add('watching');
-            watchBtn.textContent = 'Watching';
-            this.showNotification('Now watching auction');
-        }
-    }
-
-    // Editorial Card Functionality
-    setupEditorialCardListeners() {
-        const editorialCards = document.querySelectorAll('.editorial-card');
-        
-        editorialCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const title = card.querySelector('h3, h4').textContent;
-                this.showNotification(`Opening "${title}" article`);
-            });
-        });
-    }
-
     // Modal Functionality
     setupModalListeners() {
         const modal = document.querySelector('.modal');
@@ -489,11 +419,16 @@ class ArtistyApp {
         const artist = artworkCard.querySelector('.artist-name').textContent;
         const gallery = artworkCard.querySelector('.gallery-name').textContent;
         const price = artworkCard.querySelector('.artwork-price').textContent;
+        const story = artworkCard.getAttribute('data-story');
 
         modal.querySelector('.modal-title').textContent = title;
         modal.querySelector('.modal-artist').textContent = artist;
         modal.querySelector('.modal-gallery').textContent = gallery;
         modal.querySelector('.modal-price').textContent = price;
+        
+        if (story) {
+            modal.querySelector('.modal-description').textContent = story;
+        }
 
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -542,400 +477,6 @@ class ArtistyApp {
         return emailRegex.test(email);
     }
 
-    // Authentication Functionality
-    setupAuthenticationListeners() {
-        const signupBtn = document.getElementById('signup-btn');
-        const loginBtn = document.getElementById('login-btn');
-        const showLoginBtns = document.querySelectorAll('#show-login');
-        const showSignupBtns = document.querySelectorAll('#show-signup');
-        const authModalCloses = document.querySelectorAll('.auth-modal-close');
-        const authModalOverlays = document.querySelectorAll('.auth-modal-overlay');
-
-        if (signupBtn) {
-            signupBtn.addEventListener('click', () => this.showAuthModal('signup'));
-        }
-
-        if (loginBtn) {
-            loginBtn.addEventListener('click', () => this.showAuthModal('login'));
-        }
-
-        showLoginBtns.forEach(btn => {
-            btn.addEventListener('click', () => this.switchAuthModal('login'));
-        });
-
-        showSignupBtns.forEach(btn => {
-            btn.addEventListener('click', () => this.switchAuthModal('signup'));
-        });
-
-        authModalCloses.forEach(closeBtn => {
-            closeBtn.addEventListener('click', () => this.hideAuthModal());
-        });
-
-        authModalOverlays.forEach(overlay => {
-            overlay.addEventListener('click', () => this.hideAuthModal());
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                this.hideAuthModal();
-            }
-        });
-
-        const signupForm = document.getElementById('signup-form');
-        const loginForm = document.getElementById('login-form');
-
-        if (signupForm) {
-            signupForm.addEventListener('submit', (e) => this.handleSignup(e));
-        }
-
-        if (loginForm) {
-            loginForm.addEventListener('submit', (e) => this.handleLogin(e));
-        }
-
-        this.setupPasswordToggles();
-        this.setupFormValidation();
-        this.setupSocialAuth();
-    }
-
-    showAuthModal(type) {
-        this.hideAuthModal();
-        
-        const modal = document.getElementById(`${type}-modal`);
-        if (modal) {
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-            
-            setTimeout(() => {
-                const firstInput = modal.querySelector('input');
-                if (firstInput) {
-                    firstInput.focus();
-                }
-            }, 300);
-        }
-    }
-
-    switchAuthModal(type) {
-        this.hideAuthModal();
-        setTimeout(() => {
-            this.showAuthModal(type);
-        }, 300);
-    }
-
-    hideAuthModal() {
-        const modals = document.querySelectorAll('.auth-modal');
-        modals.forEach(modal => {
-            modal.classList.remove('show');
-        });
-        document.body.style.overflow = '';
-        
-        setTimeout(() => {
-            this.resetAuthForms();
-        }, 300);
-    }
-
-    resetAuthForms() {
-        const forms = document.querySelectorAll('.auth-form');
-        forms.forEach(form => {
-            form.reset();
-            
-            form.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('error', 'success');
-            });
-            
-            form.querySelectorAll('.form-error').forEach(error => {
-                error.textContent = '';
-            });
-            
-            form.querySelectorAll('input, select').forEach(input => {
-                input.classList.remove('error', 'success');
-            });
-        });
-    }
-
-    setupPasswordToggles() {
-        const passwordToggles = document.querySelectorAll('.password-toggle');
-        
-        passwordToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const input = toggle.parentElement.querySelector('input');
-                const eyeOpen = toggle.querySelector('.eye-open');
-                const eyeClosed = toggle.querySelector('.eye-closed');
-                
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    eyeOpen.style.display = 'none';
-                    eyeClosed.style.display = 'block';
-                } else {
-                    input.type = 'password';
-                    eyeOpen.style.display = 'block';
-                    eyeClosed.style.display = 'none';
-                }
-            });
-        });
-    }
-
-    setupFormValidation() {
-        const signupEmail = document.getElementById('signup-email');
-        const signupPassword = document.getElementById('signup-password');
-        const confirmPassword = document.getElementById('signup-confirm-password');
-
-        if (signupEmail) {
-            signupEmail.addEventListener('blur', () => {
-                this.validateEmail(signupEmail, 'email-error');
-            });
-        }
-
-        if (signupPassword) {
-            signupPassword.addEventListener('input', () => {
-                this.validatePassword(signupPassword);
-                this.updatePasswordStrength(signupPassword.value);
-                
-                if (confirmPassword && confirmPassword.value) {
-                    this.validatePasswordMatch(signupPassword, confirmPassword);
-                }
-            });
-        }
-
-        if (confirmPassword) {
-            confirmPassword.addEventListener('input', () => {
-                this.validatePasswordMatch(signupPassword, confirmPassword);
-            });
-        }
-    }
-
-    validateEmail(input, errorId) {
-        const email = input.value.trim();
-        const errorElement = document.getElementById(errorId);
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!email) {
-            this.setFieldError(input, errorElement, 'Email address is required');
-            return false;
-        }
-
-        if (!emailRegex.test(email)) {
-            this.setFieldError(input, errorElement, 'Please enter a valid email address');
-            return false;
-        }
-
-        this.setFieldSuccess(input, errorElement);
-        return true;
-    }
-
-    validatePassword(input) {
-        const password = input.value;
-        const errorElement = document.getElementById('password-error');
-
-        if (!password) {
-            this.setFieldError(input, errorElement, 'Password is required');
-            return false;
-        }
-
-        if (password.length < 8) {
-            this.setFieldError(input, errorElement, 'Password must be at least 8 characters long');
-            return false;
-        }
-
-        this.setFieldSuccess(input, errorElement);
-        return true;
-    }
-
-    validatePasswordMatch(passwordInput, confirmInput) {
-        const password = passwordInput.value;
-        const confirmPassword = confirmInput.value;
-        const errorElement = document.getElementById('confirm-password-error');
-
-        if (!confirmPassword) {
-            this.setFieldError(confirmInput, errorElement, 'Please confirm your password');
-            return false;
-        }
-
-        if (password !== confirmPassword) {
-            this.setFieldError(confirmInput, errorElement, 'Passwords do not match');
-            return false;
-        }
-
-        this.setFieldSuccess(confirmInput, errorElement);
-        return true;
-    }
-
-    setFieldError(input, errorElement, message) {
-        input.classList.remove('success');
-        input.classList.add('error');
-        if (errorElement) {
-            errorElement.textContent = message;
-        }
-        input.parentElement.classList.add('error');
-    }
-
-    setFieldSuccess(input, errorElement) {
-        input.classList.remove('error');
-        input.classList.add('success');
-        if (errorElement) {
-            errorElement.textContent = '';
-        }
-        input.parentElement.classList.remove('error');
-    }
-
-    updatePasswordStrength(password) {
-        const strengthFill = document.querySelector('.strength-fill');
-        const strengthText = document.querySelector('.strength-text');
-        
-        if (!strengthFill || !strengthText) return;
-
-        let strength = 0;
-        let strengthLabel = '';
-
-        if (password.length >= 8) strength++;
-        if (/[a-z]/.test(password)) strength++;
-        if (/[A-Z]/.test(password)) strength++;
-        if (/\d/.test(password)) strength++;
-
-        if (strength <= 1) {
-            strengthFill.className = 'strength-fill weak';
-            strengthLabel = 'Weak';
-        } else if (strength <= 2) {
-            strengthFill.className = 'strength-fill fair';
-            strengthLabel = 'Fair';
-        } else if (strength <= 3) {
-            strengthFill.className = 'strength-fill good';
-            strengthLabel = 'Good';
-        } else {
-            strengthFill.className = 'strength-fill strong';
-            strengthLabel = 'Strong';
-        }
-
-        strengthText.textContent = password ? `Password strength: ${strengthLabel}` : 'Password strength';
-    }
-
-    setupSocialAuth() {
-        const socialBtns = document.querySelectorAll('.btn-social');
-        
-        socialBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const provider = btn.classList.contains('google') ? 'Google' : 'Apple';
-                this.showNotification(`${provider} authentication would be implemented here`, 'info');
-            });
-        });
-    }
-
-    async handleSignup(e) {
-        e.preventDefault();
-        
-        const form = e.target;
-        const submitBtn = form.querySelector('#signup-submit');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoading = submitBtn.querySelector('.btn-loading');
-
-        if (!this.validateSignupForm(form)) {
-            return;
-        }
-
-        this.setLoadingState(submitBtn, btnText, btnLoading, true);
-
-        try {
-            await this.simulateAPI(2000);
-            this.showNotification('Account created successfully! Welcome to Artisty!', 'success');
-            this.hideAuthModal();
-        } catch (error) {
-            this.showNotification('Signup failed. Please try again.', 'error');
-        } finally {
-            this.setLoadingState(submitBtn, btnText, btnLoading, false);
-        }
-    }
-
-    async handleLogin(e) {
-        e.preventDefault();
-        
-        const form = e.target;
-        const submitBtn = form.querySelector('#login-submit');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoading = submitBtn.querySelector('.btn-loading');
-
-        if (!this.validateLoginForm(form)) {
-            return;
-        }
-
-        this.setLoadingState(submitBtn, btnText, btnLoading, true);
-
-        try {
-            await this.simulateAPI(1500);
-            this.showNotification('Welcome back!', 'success');
-            this.hideAuthModal();
-        } catch (error) {
-            this.showNotification('Login failed. Please check your credentials.', 'error');
-        } finally {
-            this.setLoadingState(submitBtn, btnText, btnLoading, false);
-        }
-    }
-
-    validateSignupForm(form) {
-        let isValid = true;
-
-        const firstname = form.querySelector('#signup-firstname');
-        const lastname = form.querySelector('#signup-lastname');
-        const email = form.querySelector('#signup-email');
-        const password = form.querySelector('#signup-password');
-        const confirmPassword = form.querySelector('#signup-confirm-password');
-        const terms = form.querySelector('#signup-terms');
-
-        if (firstname && !firstname.value.trim()) {
-            this.setFieldError(firstname, document.getElementById('firstname-error'), 'First name is required');
-            isValid = false;
-        }
-
-        if (lastname && !lastname.value.trim()) {
-            this.setFieldError(lastname, document.getElementById('lastname-error'), 'Last name is required');
-            isValid = false;
-        }
-
-        if (!this.validateEmail(email, 'email-error')) isValid = false;
-        if (!this.validatePassword(password)) isValid = false;
-        if (!this.validatePasswordMatch(password, confirmPassword)) isValid = false;
-
-        if (terms && !terms.checked) {
-            const termsError = document.getElementById('terms-error');
-            if (termsError) {
-                termsError.textContent = 'You must agree to the terms and conditions';
-            }
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    validateLoginForm(form) {
-        let isValid = true;
-
-        const email = form.querySelector('#login-email');
-        const password = form.querySelector('#login-password');
-
-        if (!this.validateEmail(email, 'login-email-error')) isValid = false;
-        
-        if (!password.value) {
-            this.setFieldError(password, document.getElementById('login-password-error'), 'Password is required');
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    setLoadingState(button, textElement, loadingElement, isLoading) {
-        if (isLoading) {
-            button.disabled = true;
-            if (textElement) textElement.style.display = 'none';
-            if (loadingElement) loadingElement.style.display = 'flex';
-        } else {
-            button.disabled = false;
-            if (textElement) textElement.style.display = 'block';
-            if (loadingElement) loadingElement.style.display = 'none';
-        }
-    }
-
-    async simulateAPI(delay) {
-        return new Promise(resolve => setTimeout(resolve, delay));
-    }
-
     // Smooth Scrolling
     setupSmoothScrolling() {
         const anchorLinks = document.querySelectorAll('a[href^="#"]');
@@ -978,7 +519,7 @@ class ArtistyApp {
             });
         }, observerOptions);
 
-        const sectionsToAnimate = document.querySelectorAll('.section-header, .artwork-card, .collection-card, .artist-card, .auction-card, .editorial-card');
+        const sectionsToAnimate = document.querySelectorAll('.section-header, .artwork-card, .collection-card, .artist-card');
         sectionsToAnimate.forEach(section => {
             observer.observe(section);
         });
@@ -987,72 +528,10 @@ class ArtistyApp {
     // Dynamic Content Loading
     loadDynamicContent() {
         this.loadFeaturedArtworks();
-        this.loadAuctionUpdates();
-        this.startAuctionCountdowns();
     }
 
     loadFeaturedArtworks() {
         console.log('Loading featured artworks...');
-    }
-
-    loadAuctionUpdates() {
-        setInterval(() => {
-            this.updateAuctionBids();
-        }, 30000);
-    }
-
-    updateAuctionBids() {
-        const auctionCards = document.querySelectorAll('.auction-card .amount');
-        
-        auctionCards.forEach(amountElement => {
-            const currentAmount = parseInt(amountElement.textContent.replace(/[^\d]/g, ''));
-            const increase = Math.floor(Math.random() * 1000) + 100;
-            const newAmount = currentAmount + increase;
-            
-            amountElement.textContent = `$${newAmount.toLocaleString()}`;
-            
-            amountElement.style.color = 'var(--color-success)';
-            setTimeout(() => {
-                amountElement.style.color = '';
-            }, 2000);
-        });
-    }
-
-    startAuctionCountdowns() {
-        const timeElements = document.querySelectorAll('.auction-card .time');
-        
-        timeElements.forEach(timeElement => {
-            const initialTime = timeElement.textContent;
-            if (initialTime.includes('hours')) {
-                this.startCountdown(timeElement, parseInt(initialTime) * 3600);
-            } else if (initialTime.includes('days')) {
-                this.startCountdown(timeElement, parseInt(initialTime) * 86400);
-            }
-        });
-    }
-
-    startCountdown(element, seconds) {
-        const timer = setInterval(() => {
-            seconds--;
-            
-            if (seconds <= 0) {
-                element.textContent = 'Auction ended';
-                clearInterval(timer);
-                return;
-            }
-            
-            const days = Math.floor(seconds / 86400);
-            const hours = Math.floor((seconds % 86400) / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            
-            if (days > 0) {
-                element.textContent = `${days} days`;
-            } else if (hours > 0) {
-                element.textContent = `${hours} hours`;
-            } else {
-                element.textContent = `${minutes} minutes`;
-            }
-        }, 60000);
     }
 
     // Notification System
@@ -1092,7 +571,7 @@ class ArtistyApp {
                 }
 
                 .notification.info {
-                    background-color: var(--color-accent);
+                    background-color: var(--color-primary);
                     color: var(--color-secondary);
                 }
 
@@ -1138,60 +617,6 @@ class ArtistyApp {
         this.hideSuggestions();
     }
 
-    // Storytelling Tooltips
-    initStorytellingTooltips() {
-        // Find all elements with data-story attribute
-        const storyElements = document.querySelectorAll('[data-story]');
-        
-        storyElements.forEach(element => {
-            this.setupStorytellingTooltip(element);
-        });
-    }
-
-    setupStorytellingTooltip(element) {
-        const story = element.getAttribute('data-story');
-        if (!story) return;
-
-        let tooltip = null;
-
-        // Mouse enter event
-        element.addEventListener('mouseenter', () => {
-            if (tooltip) return;
-
-            tooltip = this.createStorytellingTooltip(story);
-            const imageContainer = element.querySelector('.artwork-image, .artist-image, .auction-image, .editorial-image') || element;
-            
-            // Position tooltip relative to the image container
-            imageContainer.style.position = 'relative';
-            imageContainer.appendChild(tooltip);
-
-            // Trigger animation
-            requestAnimationFrame(() => {
-                tooltip.classList.add('show');
-            });
-        });
-
-        // Mouse leave event
-        element.addEventListener('mouseleave', () => {
-            if (tooltip) {
-                tooltip.classList.remove('show');
-                setTimeout(() => {
-                    if (tooltip && tooltip.parentNode) {
-                        tooltip.parentNode.removeChild(tooltip);
-                    }
-                    tooltip = null;
-                }, 300);
-            }
-        });
-    }
-
-    createStorytellingTooltip(story) {
-        const tooltip = document.createElement('div');
-        tooltip.className = 'storytelling-tooltip';
-        tooltip.textContent = story;
-        return tooltip;
-    }
-
     // Image Lazy Loading
     initImageLazyLoading() {
         const images = document.querySelectorAll('img[src]');
@@ -1223,6 +648,25 @@ class ArtistyApp {
         }
     }
 
+    initializeArtworkGrid() {
+        const artworkImages = document.querySelectorAll('.artwork-placeholder');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        imageObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            artworkImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    }
+
     // Utility Functions
     debounce(func, wait) {
         let timeout;
@@ -1249,32 +693,92 @@ class ArtistyApp {
         };
     }
 
-    initializeArtworkGrid() {
-        const artworkImages = document.querySelectorAll('.artwork-placeholder');
-        
+    // Performance Optimization
+    optimizePerformance() {
+        this.setupLazyLoading();
+        this.setupImageOptimization();
+    }
+
+    setupLazyLoading() {
         if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[data-src]');
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        imageObserver.unobserve(entry.target);
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
                     }
                 });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.1
             });
 
-            artworkImages.forEach(img => {
+            lazyImages.forEach(img => {
                 imageObserver.observe(img);
             });
         }
+    }
+
+    setupImageOptimization() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            // Add loading="lazy" for better performance
+            if (!img.hasAttribute('loading')) {
+                img.setAttribute('loading', 'lazy');
+            }
+            
+            // Add error handling
+            img.addEventListener('error', () => {
+                img.style.display = 'none';
+            });
+        });
+    }
+
+    // Accessibility Enhancements
+    setupAccessibility() {
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Add ARIA labels where needed
+        const interactiveElements = document.querySelectorAll('button, a, input');
+        interactiveElements.forEach(element => {
+            if (!element.getAttribute('aria-label') && !element.textContent.trim()) {
+                element.setAttribute('aria-label', 'Interactive element');
+            }
+        });
+    }
+
+    // Error Handling
+    setupErrorHandling() {
+        window.addEventListener('error', (event) => {
+            console.error('JavaScript Error:', event.error);
+            this.showNotification('일시적인 오류가 발생했습니다. 페이지를 새로고침해주세요.', 'error');
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled Promise Rejection:', event.reason);
+            this.showNotification('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error');
+        });
     }
 }
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new ArtistyApp();
+    new ArtfinderApp();
 });
 
 // Export for testing purposes
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ArtistyApp;
+    module.exports = ArtfinderApp;
 }
