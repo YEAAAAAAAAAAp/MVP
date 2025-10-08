@@ -64,6 +64,8 @@ class ArtfinderApp {
         this.setupModalListeners();
         this.setupNewsletterListeners();
         this.setupSmoothScrolling();
+        this.setupStorytellingTooltips();
+        this.setupScrollAnimations();
     }
 
     initializeComponents() {
@@ -88,14 +90,10 @@ class ArtfinderApp {
 
         const scrollY = window.scrollY;
         
-        if (scrollY > 20) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.borderBottomColor = 'rgba(229, 229, 229, 0.8)';
-            header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+        if (scrollY > 50) {
+            header.classList.add('scrolled');
         } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.borderBottomColor = 'var(--color-gray-100)';
-            header.style.boxShadow = 'none';
+            header.classList.remove('scrolled');
         }
     }
 
@@ -626,24 +624,41 @@ class ArtfinderApp {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.style.transition = 'opacity 0.3s ease';
+                        
+                        // Add loading animation
+                        img.style.transition = 'opacity 0.5s ease, transform 0.3s ease';
                         img.style.opacity = '1';
+                        img.style.transform = 'scale(1)';
+                        
+                        // Add error handling
+                        img.addEventListener('error', () => {
+                            img.style.display = 'none';
+                            console.warn('Failed to load image:', img.src);
+                        });
+                        
+                        // Add load success handling
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                        });
+                        
                         imageObserver.unobserve(img);
                     }
                 });
             }, {
-                rootMargin: '50px 0px',
+                rootMargin: '100px 0px',
                 threshold: 0.1
             });
 
             images.forEach(img => {
                 img.style.opacity = '0';
+                img.style.transform = 'scale(0.95)';
                 imageObserver.observe(img);
             });
         } else {
             // Fallback for older browsers
             images.forEach(img => {
                 img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
             });
         }
     }
@@ -757,6 +772,92 @@ class ArtfinderApp {
                 element.setAttribute('aria-label', 'Interactive element');
             }
         });
+    }
+
+    // Storytelling Tooltips
+    setupStorytellingTooltips() {
+        const artworkCards = document.querySelectorAll('.artwork-card[data-story]');
+        
+        artworkCards.forEach(card => {
+            this.setupStorytellingTooltip(card);
+        });
+    }
+
+    setupStorytellingTooltip(card) {
+        const story = card.getAttribute('data-story');
+        if (!story) return;
+
+        let tooltip = null;
+
+        // Mouse enter event
+        card.addEventListener('mouseenter', () => {
+            if (tooltip) return;
+
+            tooltip = this.createStorytellingTooltip(story);
+            const imageContainer = card.querySelector('.artwork-image');
+            
+            if (imageContainer) {
+                imageContainer.style.position = 'relative';
+                imageContainer.appendChild(tooltip);
+
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    tooltip.classList.add('show');
+                });
+            }
+        });
+
+        // Mouse leave event
+        card.addEventListener('mouseleave', () => {
+            if (tooltip) {
+                tooltip.classList.remove('show');
+                setTimeout(() => {
+                    if (tooltip && tooltip.parentNode) {
+                        tooltip.parentNode.removeChild(tooltip);
+                    }
+                    tooltip = null;
+                }, 300);
+            }
+        });
+    }
+
+    createStorytellingTooltip(story) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'storytelling-tooltip';
+        tooltip.innerHTML = `
+            <div class="story-header">
+                <span class="story-icon">📖</span>
+                <span class="story-title">작가의 이야기</span>
+            </div>
+            <div class="story-content">
+                ${story}
+            </div>
+        `;
+        return tooltip;
+    }
+
+    // Scroll Animations
+    setupScrollAnimations() {
+        const animatedElements = document.querySelectorAll('.artwork-card, .artist-card, .collection-card');
+        
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-animation', 'revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(element => {
+                element.classList.add('reveal-animation');
+                observer.observe(element);
+            });
+        }
     }
 
     // Error Handling
