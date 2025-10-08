@@ -788,35 +788,54 @@ class ArtfinderApp {
         if (!story) return;
 
         let tooltip = null;
+        let hoverTimeout = null;
 
         // Mouse enter event
         card.addEventListener('mouseenter', () => {
-            if (tooltip) return;
-
-            tooltip = this.createStorytellingTooltip(story);
-            const imageContainer = card.querySelector('.artwork-image');
-            
-            if (imageContainer) {
-                imageContainer.style.position = 'relative';
-                imageContainer.appendChild(tooltip);
-
-                // Trigger animation
-                requestAnimationFrame(() => {
-                    tooltip.classList.add('show');
-                });
+            // Clear any existing timeout
+            if (hoverTimeout) {
+                clearTimeout(hoverTimeout);
             }
+
+            // Create tooltip after a short delay for smoother experience
+            hoverTimeout = setTimeout(() => {
+                if (tooltip) return;
+
+                tooltip = this.createStorytellingTooltip(story);
+                const imageContainer = card.querySelector('.artwork-image');
+                
+                if (imageContainer) {
+                    imageContainer.style.position = 'relative';
+                    imageContainer.appendChild(tooltip);
+
+                    // Trigger animation with a slight delay
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            tooltip.classList.add('show');
+                            this.startAutoScroll(tooltip);
+                        }, 50);
+                    });
+                }
+            }, 200);
         });
 
         // Mouse leave event
         card.addEventListener('mouseleave', () => {
+            // Clear hover timeout
+            if (hoverTimeout) {
+                clearTimeout(hoverTimeout);
+                hoverTimeout = null;
+            }
+
             if (tooltip) {
+                this.stopAutoScroll(tooltip);
                 tooltip.classList.remove('show');
                 setTimeout(() => {
                     if (tooltip && tooltip.parentNode) {
                         tooltip.parentNode.removeChild(tooltip);
                     }
                     tooltip = null;
-                }, 300);
+                }, 500);
             }
         });
     }
@@ -824,16 +843,66 @@ class ArtfinderApp {
     createStorytellingTooltip(story) {
         const tooltip = document.createElement('div');
         tooltip.className = 'storytelling-tooltip';
+        
+        // Split story into sentences for auto-scrolling
+        const sentences = story.split('.').filter(s => s.trim().length > 0);
+        
         tooltip.innerHTML = `
-            <div class="story-header">
-                <span class="story-icon">📖</span>
-                <span class="story-title">작가의 이야기</span>
-            </div>
             <div class="story-content">
-                ${story}
+                <div class="story-text-container">
+                    <div class="story-text active" data-index="0">${sentences[0] ? sentences[0].trim() + '.' : ''}</div>
+                </div>
             </div>
         `;
+        
+        // Store sentences for auto-scrolling
+        tooltip.sentences = sentences;
+        tooltip.currentIndex = 0;
+        
         return tooltip;
+    }
+
+    // Auto-scroll storytelling text
+    startAutoScroll(tooltip) {
+        if (!tooltip.sentences || tooltip.sentences.length <= 1) return;
+
+        const container = tooltip.querySelector('.story-text-container');
+        let currentIndex = 0;
+        
+        const showNextText = () => {
+            if (currentIndex >= tooltip.sentences.length - 1) {
+                currentIndex = 0; // Loop back to start
+            } else {
+                currentIndex++;
+            }
+            
+            const currentText = tooltip.querySelector('.story-text.active');
+            if (currentText) {
+                currentText.classList.remove('active');
+                currentText.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    currentText.textContent = tooltip.sentences[currentIndex].trim() + '.';
+                    currentText.classList.remove('fade-out');
+                    currentText.classList.add('fade-in');
+                    
+                    setTimeout(() => {
+                        currentText.classList.remove('fade-in');
+                        currentText.classList.add('active');
+                    }, 300);
+                }, 300);
+            }
+        };
+
+        // Start auto-scroll after initial display
+        tooltip.autoScrollInterval = setInterval(showNextText, 3000); // Change every 3 seconds
+    }
+
+    stopAutoScroll(tooltip) {
+        if (tooltip.autoScrollInterval) {
+            clearInterval(tooltip.autoScrollInterval);
+            tooltip.autoScrollInterval = null;
+        }
     }
 
     // Scroll Animations

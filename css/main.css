@@ -1282,26 +1282,27 @@ h6 { font-size: var(--font-size-base); }
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
     color: var(--color-secondary);
     padding: var(--space-5);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     font-size: var(--font-size-sm);
     line-height: 1.6;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) scale(0.95);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 20;
-    max-height: 140px;
-    overflow-y: auto;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    max-height: 180px;
+    overflow: visible;
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.3);
+    word-wrap: break-word;
 }
 
 .storytelling-tooltip.show,
 .artwork-card:hover .storytelling-tooltip,
 .artist-card:hover .storytelling-tooltip {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 /* Scrollbar styling for tooltip */
@@ -1335,26 +1336,56 @@ h6 { font-size: var(--font-size-base); }
     border-bottom: 6px solid rgba(0, 0, 0, 0.9);
 }
 
-.story-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.story-icon {
-    font-size: var(--font-size-lg);
-}
-
-.story-title {
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
-}
+/* Story header styles removed - now using text-only tooltips */
 
 .story-content {
     line-height: 1.7;
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.95);
+    text-align: left;
+    hyphens: auto;
+    font-weight: var(--font-weight-normal);
+}
+
+.story-text-container {
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.story-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.story-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.story-text.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.story-text.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modal Image Styles */
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Modern Floating Elements */
