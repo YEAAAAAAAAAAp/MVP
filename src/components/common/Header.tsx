@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white border-b border-gray-200 py-4 sticky top-0 z-[100] shadow-sm">
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-4">
-        <h1 className="text-2xl font-bold text-blue-600 m-0">ARTRA</h1>
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent m-0">ARTRA</h1>
         
         <div className="flex gap-6 md:gap-4">
           <Link 
