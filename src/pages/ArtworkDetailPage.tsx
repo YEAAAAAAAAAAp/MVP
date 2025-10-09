@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { mockArtworks } from '../utils/mockData'
+import ChatSidebar from '../components/common/ChatSidebar'
 
-const PageContainer = styled.div`
+const PageContainer = styled.div<{ $chatOpen: boolean }>`
   min-height: 100vh;
   background: #f8fafc;
   padding: 40px 20px;
+  transition: padding-right 0.3s ease-out;
+  
+  @media (min-width: 769px) {
+    padding-right: ${props => props.$chatOpen ? '470px' : '20px'};
+  }
 `
 
 const ContentWrapper = styled.div`
@@ -161,9 +167,177 @@ const BackButton = styled.button`
   }
 `
 
+const PricingSection = styled.section`
+  background: #f8fafc;
+  padding: 80px 20px;
+  margin-top: 60px;
+`
+
+const PricingContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`
+
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 700;
+`
+
+const PricingContent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+`
+
+const PriceCard = styled.div`
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: fit-content;
+`
+
+const PriceTitle = styled.h3`
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 20px;
+  font-weight: 600;
+`
+
+const MainPrice = styled.div`
+  font-size: 3rem;
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-bottom: 30px;
+  
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+`
+
+const PriceNote = styled.div`
+  color: #64748b;
+  line-height: 1.8;
+  font-size: 0.95rem;
+`
+
+const InfoTable = styled.div`
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+`
+
+const InfoTitle = styled.h3`
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  font-weight: 600;
+`
+
+const TableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+`
+
+const InfoRow = styled.div`
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 15px 0;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+`
+
+const InfoLabel = styled.div`
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+`
+
+const InfoValue = styled.div`
+  color: #1a1a1a;
+  font-weight: 500;
+  line-height: 1.5;
+`
+
+const FinalActions = styled.div`
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+`
+
+const FinalPrimaryButton = styled.button`
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+  }
+`
+
+const FinalSecondaryButton = styled.button`
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 16px 38px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+`
+
+const GuaranteeText = styled.div`
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+`
+
 const ArtworkDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const [isChatOpen, setIsChatOpen] = useState(false)
   
   const artwork = mockArtworks.find(art => art.id === id)
   
@@ -172,15 +346,25 @@ const ArtworkDetailPage: React.FC = () => {
   }
 
   const handleContactArtist = () => {
-    navigate(`/contact/${artwork.artist}`)
+    setIsChatOpen(true)
   }
 
   const handlePurchase = () => {
     navigate(`/purchase/${artwork.id}`)
   }
 
+  const handleScrollToPricing = () => {
+    const pricingSection = document.getElementById('pricing-section')
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   return (
-    <PageContainer>
+    <PageContainer $chatOpen={isChatOpen}>
       <ContentWrapper>
         <ImageSection>
           <BackButton onClick={() => navigate('/')}>
@@ -216,7 +400,7 @@ const ArtworkDetailPage: React.FC = () => {
           </Description>
           
           <ActionButtons>
-            <PrimaryButton onClick={handlePurchase}>
+            <PrimaryButton onClick={handleScrollToPricing}>
               가격정보 알아보기
             </PrimaryButton>
             <SecondaryButton onClick={handleContactArtist}>
@@ -225,6 +409,75 @@ const ArtworkDetailPage: React.FC = () => {
           </ActionButtons>
         </InfoSection>
       </ContentWrapper>
+      
+      <PricingSection id="pricing-section">
+        <PricingContainer>
+          <SectionTitle>가격 정보와 거래 과정</SectionTitle>
+          
+          <PricingContent>
+            <PriceCard>
+              <PriceTitle>작품 가격</PriceTitle>
+              <MainPrice>₩ {artwork.price?.toLocaleString()}</MainPrice>
+              <PriceNote>
+                • 안전거래를 보장합니다<br/>
+                • 진품 인증서 포함<br/>
+                • 시장 데이터 기반 적정가격 표시
+              </PriceNote>
+            </PriceCard>
+            
+            <InfoTable>
+              <InfoTitle>작품 상세 정보</InfoTitle>
+              <TableContainer>
+                <InfoRow>
+                  <InfoLabel>작품명</InfoLabel>
+                  <InfoValue>{artwork.title}</InfoValue>
+                </InfoRow>
+                <InfoRow>
+                  <InfoLabel>작가명</InfoLabel>
+                  <InfoValue>{artwork.artist}</InfoValue>
+                </InfoRow>
+                <InfoRow>
+                  <InfoLabel>작품 크기 / 재료</InfoLabel>
+                  <InfoValue>60x80cm / Oil on canvas</InfoValue>
+                </InfoRow>
+                <InfoRow>
+                  <InfoLabel>등록일 / 거래 상태</InfoLabel>
+                  <InfoValue>2025.09.12 / 판매 중</InfoValue>
+                </InfoRow>
+                <InfoRow>
+                  <InfoLabel>희망가(₩)</InfoLabel>
+                  <InfoValue>{artwork.price?.toLocaleString()}원</InfoValue>
+                </InfoRow>
+                <InfoRow>
+                  <InfoLabel>설명</InfoLabel>
+                  <InfoValue>
+                    클럽 시 작가 프로필로 이동<br/>
+                    시장 데이터 기반 가이드 표시
+                  </InfoValue>
+                </InfoRow>
+              </TableContainer>
+            </InfoTable>
+          </PricingContent>
+          
+          <FinalActions>
+            <FinalPrimaryButton onClick={handlePurchase}>
+              작품 구매하기
+            </FinalPrimaryButton>
+            <FinalSecondaryButton onClick={handleContactArtist}>
+              작가에게 구매 문의하기
+            </FinalSecondaryButton>
+          </FinalActions>
+          <GuaranteeText>
+            🛡️ 안전거래 보장 • 진품 인증 • 전액 환불 보장
+          </GuaranteeText>
+        </PricingContainer>
+      </PricingSection>
+      
+      <ChatSidebar 
+        isOpen={isChatOpen} 
+        onClose={() => setIsChatOpen(false)}
+        artistName={artwork.artist}
+      />
     </PageContainer>
   )
 }
