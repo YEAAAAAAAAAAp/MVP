@@ -22,3 +22,31 @@ export interface User {
   type: 'artist' | 'collector';
   profileImage?: string;
 }
+
+export interface CollectorProfile {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  collectorType: 'individual' | 'corporate' | 'gallery' | 'museum';
+  interests: string[];
+  budgetRange: string;
+  experience?: string;
+  motivation?: string;
+  preferredStyle?: string;
+  createdAt: Date;
+}
+
+export interface ArtistProfile {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  artistName: string;
+  bio?: string;
+  portfolio?: string;
+  instagram?: string;
+  experience?: string;
+  approved: boolean;
+  createdAt: Date;
+}

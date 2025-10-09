@@ -327,7 +327,7 @@ const LoginPage: React.FC = () => {
               if (userType === 'artist') {
                 navigate('/artist/register')
               } else {
-                navigate('/register')
+                navigate('/collector/register')
               }
             }}>
               {userType === 'artist' ? '작가 회원가입' : '컬렉터 회원가입'}
@@ -420,7 +420,7 @@ const LoginPage: React.FC = () => {
             ) : (
               <>
                 <p>아직 회원이 아니신가요?</p>
-                <button onClick={() => navigate('/register')}>
+                <button onClick={() => navigate('/collector/register')}>
                   컬렉터 회원가입
                 </button>
               </>

@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import InfiniteCarousel from '../components/common/InfiniteCarousel'
 import AIMatchingLoader from '../components/common/AIMatchingLoader'
+import { useAuthStore } from '../store/authStore'
 import { Artwork } from '../types'
 import { mockArtworks } from '../utils/mockData'
 
 const HomePage: React.FC = () => {
   const [showAILoader, setShowAILoader] = useState(false)
   const navigate = useNavigate()
+  const { user } = useAuthStore()
 
   const handleArtworkClick = (artwork: Artwork) => {
     // 작품 상세 페이지로 이동
@@ -46,12 +48,14 @@ const HomePage: React.FC = () => {
         </section>
       </div>
 
-      <button 
-        onClick={() => navigate('/artist/register')}
-        className="fixed bottom-10 right-10 max-md:bottom-5 max-md:right-5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-none px-6 py-4 max-md:px-5 max-md:py-3 rounded-full text-base max-md:text-sm font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:-translate-y-0.5 z-[100] whitespace-nowrap"
-      >
-        작가인가요?
-      </button>
+      {!user && (
+        <button 
+          onClick={() => navigate('/artist/register')}
+          className="fixed bottom-10 right-10 max-md:bottom-5 max-md:right-5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-none px-6 py-4 max-md:px-5 max-md:py-3 rounded-full text-base max-md:text-sm font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:-translate-y-0.5 z-[100] whitespace-nowrap"
+        >
+          작가인가요?
+        </button>
+      )}
 
       {showAILoader && (
         <AIMatchingLoader onComplete={handleAIMatchComplete} />

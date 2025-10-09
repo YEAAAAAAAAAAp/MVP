@@ -32,7 +32,7 @@ const ArtFrame: React.FC<ArtFrameProps> = ({
               alt={artwork?.title || 'Artwork'}
               className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] w-[calc(100%-70px)] h-[calc(100%-70px)] object-cover rounded-md z-[2]"
             />
-            <div className="absolute -bottom-[60px] left-0 right-0 text-center text-gray-800">
+            <div className="absolute -bottom-[80px] left-0 right-0 text-center text-gray-800">
               <h4 className="m-0 mb-2 text-lg font-semibold">
                 {artwork?.title || 'Unknown Title'}
               </h4>

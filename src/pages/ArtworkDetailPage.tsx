@@ -41,15 +41,15 @@ const ArtworkDetailPage: React.FC = () => {
         <div className="sticky top-10">
           <button 
             onClick={() => navigate('/')}
-            className="bg-transparent border-0 text-slate-500 text-base cursor-pointer mb-[30px] py-[10px] px-0 transition-colors duration-200 hover:text-[#1a1a1a] before:content-['←_'] before:mr-[5px]"
+            className="bg-transparent border-0 text-slate-500 text-base cursor-pointer mb-[50px] py-[10px] px-0 transition-colors duration-200 hover:text-[#1a1a1a] before:content-['←_'] before:mr-[5px]"
           >
             홈으로 돌아가기
           </button>
-          <div className="bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8860b] rounded-[20px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.15)] relative before:content-[''] before:block before:pb-[125%]">
+          <div className="bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8860b] rounded-[20px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.15)] relative overflow-visible" style={{ paddingTop: '60px', height: '600px' }}>
             <img 
               src={artwork.imageUrl} 
               alt={artwork.title}
-              className="absolute top-[30px] left-[30px] right-[30px] bottom-[30px] w-[calc(100%-60px)] h-[calc(100%-60px)] object-cover rounded-lg z-10"
+              className="absolute -top-[40px] left-[30px] w-[calc(100%-60px)] h-[600px] object-cover rounded-lg z-10 shadow-[0_15px_35px_rgba(0,0,0,0.2)]"
             />
           </div>
         </div>

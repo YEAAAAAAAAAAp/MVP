@@ -11,6 +11,7 @@ import AIMatchResultPage from './pages/AIMatchResultPage'
 import ContactArtistPage from './pages/ContactArtistPage'
 import PurchasePage from './pages/PurchasePage'
 import ArtistRegisterPage from './pages/ArtistRegisterPage'
+import CollectorRegisterPage from './pages/CollectorRegisterPage'
 import LoginPage from './pages/LoginPage'
 
 // Components
@@ -43,6 +44,7 @@ const App: React.FC = () => {
             <Route path="/contact/:artist" element={<ContactArtistPage />} />
             <Route path="/purchase/:id" element={<PurchasePage />} />
             <Route path="/artist/register" element={<ArtistRegisterPage />} />
+            <Route path="/collector/register" element={<CollectorRegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
         </MainContent>
