@@ -284,7 +284,10 @@ const CollectorDashboardPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="mt-4 flex space-x-2">
-                          <button className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors">
+                          <button 
+                            onClick={() => navigate(`/artwork/${artwork.id}`)}
+                            className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors"
+                          >
                             상세보기
                           </button>
                           <button className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors">
@@ -386,10 +389,16 @@ const CollectorDashboardPage: React.FC = () => {
                         <div className="flex items-center justify-between">
                           <span className="text-lg font-bold text-indigo-600">₩{artwork.price.toLocaleString()}</span>
                           <div className="flex space-x-2">
-                            <button className="px-3 py-1 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors">
-                              위시리스트
+                            <button 
+                              onClick={() => navigate(`/artwork/${artwork.id}`)}
+                              className="px-3 py-1 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors"
+                            >
+                              상세보기
                             </button>
-                            <button className="px-3 py-1 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors">
+                            <button 
+                              onClick={() => navigate(`/purchase/${artwork.id}`)}
+                              className="px-3 py-1 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors"
+                            >
                               구매하기
                             </button>
                           </div>

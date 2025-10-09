@@ -233,7 +233,10 @@ const ArtistDashboardPage: React.FC = () => {
                           <button className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors">
                             수정
                           </button>
-                          <button className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors">
+                          <button 
+                            onClick={() => navigate(`/artwork/${artwork.id}`)}
+                            className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors"
+                          >
                             상세보기
                           </button>
                         </div>

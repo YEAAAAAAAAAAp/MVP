@@ -1,17 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface AIMatchingLoaderProps {
-  onComplete: () => void;
+  // onComplete 제거 - 이제 상태 표시만 담당
 }
 
-const AIMatchingLoader: React.FC<AIMatchingLoaderProps> = ({ onComplete }) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onComplete()
-    }, 3000) // 3초 후 완료
+const AIMatchingLoader: React.FC<AIMatchingLoaderProps> = () => {
+  const [status, setStatus] = useState('AI 분석 중...')
 
-    return () => clearTimeout(timer)
-  }, [onComplete])
+  useEffect(() => {
+    const updateStatus = async () => {
+      // 상태 메시지만 변경 (페이지 이동은 하지 않음)
+      setStatus('AI 분석 중...')
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      setStatus('취향 파악 중...')
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      setStatus('최적의 작품 선정 중...')
+    }
+
+    updateStatus()
+  }, [])
 
   return (
     <div className="fixed inset-0 bg-white flex items-center justify-center z-[1000] animate-fadeIn px-[60px] max-md:flex-col max-md:px-10 max-md:py-10">
@@ -25,6 +34,7 @@ const AIMatchingLoader: React.FC<AIMatchingLoaderProps> = ({ onComplete }) => {
               그림을<br />
               찾아드립니다
             </div>
+            <p className="text-xl text-indigo-600 font-semibold mt-6">{status}</p>
           </div>
         </div>
         

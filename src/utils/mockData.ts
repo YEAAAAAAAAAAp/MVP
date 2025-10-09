@@ -17,6 +17,86 @@ export const mockArtworks = [
     gallery: '서울 현대미술관'
   },
   {
+    id: '25',
+    title: '추상적 사고',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=300&h=400',
+    price: 2800000,
+    gallery: '서울 현대미술관'
+  },
+  {
+    id: '26',
+    title: '시간의 흐름',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=300&h=450',
+    price: 3200000,
+    gallery: 'ARTRA 갤러리'
+  },
+  {
+    id: '27',
+    title: '색의 향연',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=300&h=380',
+    price: 2100000,
+    gallery: '서울 현대미술관'
+  },
+  {
+    id: '28',
+    title: '기하학적 명상',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&h=420',
+    price: 2600000,
+    gallery: '강남 아트스페이스'
+  },
+  {
+    id: '29',
+    title: '도시의 정취',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=300&h=350',
+    price: 3500000,
+    gallery: '홍대 갤러리'
+  },
+  {
+    id: '30',
+    title: '빛의 여정',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&h=480',
+    price: 2900000,
+    gallery: '서울 현대미술관'
+  },
+  {
+    id: '31',
+    title: '균형의 미학',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=300&h=360',
+    price: 3100000,
+    gallery: '인사동 아트센터'
+  },
+  {
+    id: '32',
+    title: '현대적 감성',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=440',
+    price: 2700000,
+    gallery: 'ARTRA 갤러리'
+  },
+  {
+    id: '33',
+    title: '공간의 재해석',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=390',
+    price: 3400000,
+    gallery: '서울 현대미술관'
+  },
+  {
+    id: '34',
+    title: '미래의 서사',
+    artist: '김아트',
+    imageUrl: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=300&h=410',
+    price: 3800000,
+    gallery: '명동 갤러리'
+  },
+  {
     id: '3',
     title: '자연의 속삭임',
     artist: '이창작',

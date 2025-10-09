@@ -16,6 +16,7 @@ import LoginPage from './pages/LoginPage'
 import ArtistLoginPage from './pages/ArtistLoginPage'
 import ArtistDashboardPage from './pages/ArtistDashboardPage'
 import CollectorDashboardPage from './pages/CollectorDashboardPage'
+import ArtistProfilePage from './pages/ArtistProfilePage'
 
 // Components
 import Header from './components/common/Header'
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/artist" element={<ArtistPage />} />
+            <Route path="/artist/:artistId" element={<ArtistProfilePage />} />
             <Route path="/collector" element={<CollectorPage />} />
             <Route path="/artwork/:id" element={<ArtworkDetailPage />} />
             <Route path="/ai-match-result" element={<AIMatchResultPage />} />

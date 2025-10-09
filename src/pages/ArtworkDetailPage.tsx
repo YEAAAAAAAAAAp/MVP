@@ -1,18 +1,33 @@
 import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { mockArtworks } from '../utils/mockData'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { mockArtworks, mockArtists } from '../utils/mockData'
 import ChatSidebar from '../components/common/ChatSidebar'
+
+interface LocationState {
+  aiRecommendation?: {
+    artworkId: string
+    reason: string
+    matchScore: number
+  }
+}
 
 const ArtworkDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const location = useLocation()
   const [isChatOpen, setIsChatOpen] = useState(false)
+  
+  const state = location.state as LocationState
+  const aiRecommendation = state?.aiRecommendation
   
   const artwork = mockArtworks.find(art => art.id === id)
   
   if (!artwork) {
     return <div>작품을 찾을 수 없습니다.</div>
   }
+
+  // 작가 정보 찾기
+  const artist = mockArtists.find(a => a.name === artwork.artist)
 
   const handleContactArtist = () => {
     setIsChatOpen(true)
@@ -55,9 +70,30 @@ const ArtworkDetailPage: React.FC = () => {
         </div>
         
         <div className="py-5">
+          {/* AI 추천 배지 */}
+          {aiRecommendation && (
+            <div className="mb-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-xl">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-2xl">🤖</span>
+                <span className="text-lg font-bold text-indigo-600">AI 추천 작품</span>
+                <span className="ml-auto px-3 py-1 bg-indigo-500 text-white rounded-full text-sm font-semibold">
+                  매칭도 {aiRecommendation.matchScore}%
+                </span>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {aiRecommendation.reason}
+              </p>
+            </div>
+          )}
+
           <div className="mb-10">
             <h1 className="text-[2.5rem] text-[#1a1a1a] mb-[10px] font-bold">{artwork.title}</h1>
-            <div className="text-[1.3rem] text-[#667eea] font-semibold mb-5">{artwork.artist}</div>
+            <button
+              onClick={() => artist && navigate(`/artist/${artist.id}`)}
+              className="text-[1.3rem] text-[#667eea] font-semibold mb-5 bg-transparent border-0 cursor-pointer hover:text-[#5568d3] transition-all duration-200 p-0 hover:translate-x-1"
+            >
+              {artwork.artist} →
+            </button>
             <div className="text-[2rem] text-[#1a1a1a] font-bold mb-[30px]">
               ₩ {artwork.price?.toLocaleString()}
             </div>

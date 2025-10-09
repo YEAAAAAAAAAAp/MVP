@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-4">
         <div className="flex items-center gap-8">
           <Link to="/" className="no-underline">
-            <h1 className="text-2xl font-bold text-blue-600 m-0 cursor-pointer hover:text-blue-700 transition-colors">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent m-0 cursor-pointer hover:opacity-80 transition-opacity">
               ARTRA
             </h1>
           </Link>

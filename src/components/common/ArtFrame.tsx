@@ -22,9 +22,19 @@ const ArtFrame: React.FC<ArtFrameProps> = ({
         after:content-[''] after:absolute after:top-[22px] after:left-[22px] after:right-[22px] after:bottom-[22px] after:bg-[#2c2c2c] after:rounded-md"
       >
         {isQuestionMark ? (
-          <div className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 text-white text-[10rem] font-bold rounded-md z-[2]
-            before:content-['?'] before:drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
-          />
+          <div className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] flex flex-col items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-md z-[2] p-8">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold mb-4 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.3)]">
+                원하는 스타일을<br />찾지 못하셨나요?
+              </h3>
+              <p className="text-lg opacity-90 mb-6 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.3)]">
+                AI가 당신의 취향에 맞는<br />작품을 찾아드립니다
+              </p>
+              <div className="inline-block px-6 py-3 bg-white/20 rounded-full text-sm font-semibold backdrop-blur-sm border-2 border-white/30">
+                클릭하여 AI 매칭 시작 ✨
+              </div>
+            </div>
+          </div>
         ) : (
           <>
             <img 
