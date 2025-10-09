@@ -40,12 +40,15 @@ const Header: React.FC = () => {
         <div className="flex items-center gap-4">
           {isAuthenticated && user ? (
             <>
-              <div className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[20px] text-white text-sm font-medium">
+              <button
+                onClick={() => user.type === 'artist' ? navigate('/artist/dashboard') : navigate('/collector/dashboard')}
+                className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[20px] text-white text-sm font-medium hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 cursor-pointer"
+              >
                 <span className="bg-white/30 px-2 py-1 rounded-[10px] text-xs">
                   {user.type === 'artist' ? '🎨 아티스트' : '👤 콜렉터'}
                 </span>
                 <span>{user.name}</span>
-              </div>
+              </button>
               <button 
                 onClick={handleLogout}
                 className="px-4 py-2 bg-white text-indigo-500 border-2 border-indigo-500 rounded-[20px] font-semibold text-sm cursor-pointer transition-all hover:bg-indigo-500 hover:text-white"
