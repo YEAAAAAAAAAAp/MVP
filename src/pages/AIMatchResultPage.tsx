@@ -71,7 +71,7 @@ const AIMatchResultPage: React.FC = () => {
             onClick={handleContactArtist}
             className="bg-white text-indigo-500 border-2 border-indigo-500 py-[13px] px-8 rounded-full text-base font-semibold cursor-pointer transition-all hover:bg-indigo-500 hover:text-white hover:-translate-y-0.5"
           >
-            아티스트에게 문의하기
+            작가에게 문의하기
           </button>
         </div>
       </div>

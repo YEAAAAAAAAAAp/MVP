@@ -281,7 +281,7 @@ const CollectorRegisterPage: React.FC = () => {
     }
     
     // TODO: 실제 API 연동
-    alert('콜렉터 회원가입이 완료되었습니다!\n\n이제 ARTRA에서 다양한 예술 작품을 탐색하고 구매할 수 있습니다.')
+    alert('컬렉터 회원가입이 완료되었습니다!\n\n이제 ARTRA에서 다양한 예술 작품을 탐색하고 구매할 수 있습니다.')
     navigate('/')
   }
 
@@ -306,15 +306,15 @@ const CollectorRegisterPage: React.FC = () => {
         
         <Header>
           <Logo>ARTRA</Logo>
-          <Title>콜렉터 회원가입</Title>
+          <Title>컬렉터 회원가입</Title>
           <Subtitle>예술 작품과의 특별한 만남을 시작하세요</Subtitle>
         </Header>
 
         <InfoBox>
-          <h4>🎨 콜렉터 혜택</h4>
+          <h4>🎨 컬렉터 혜택</h4>
           <ul>
             <li>AI 기반 맞춤형 작품 추천</li>
-            <li>아티스트와 직접 소통할 수 있는 채팅 기능</li>
+            <li>작가와 직접 소통할 수 있는 채팅 기능</li>
             <li>안전하고 투명한 거래 시스템</li>
             <li>작품 진품 보장 및 가격 정보 제공</li>
           </ul>
@@ -364,14 +364,14 @@ const CollectorRegisterPage: React.FC = () => {
           </FormGroup>
 
           <FormGroup>
-            <Label>콜렉터 유형</Label>
+            <Label>컬렉터 유형</Label>
             <Select
               name="collectorType"
               value={formData.collectorType}
               onChange={handleChange}
             >
-              <option value="individual">개인 콜렉터</option>
-              <option value="corporate">기업 콜렉터</option>
+              <option value="individual">개인 컬렉터</option>
+              <option value="corporate">기업 컬렉터</option>
               <option value="gallery">갤러리/딜러</option>
               <option value="museum">박물관/기관</option>
             </Select>
@@ -426,7 +426,7 @@ const CollectorRegisterPage: React.FC = () => {
             <Label>컬렉팅 경험</Label>
             <Textarea
               name="experience"
-              placeholder="이전에 미술 작품을 구매해본 경험이나 콜렉팅에 대한 경험을 알려주세요"
+              placeholder="이전에 미술 작품을 구매해본 경험이나 컬렉팅에 대한 경험을 알려주세요"
               value={formData.experience}
               onChange={handleChange}
             />

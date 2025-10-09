@@ -96,7 +96,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, onClose, artistName }
         <div className="p-5 border-b border-gray-200 flex justify-between items-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
           <div>
             <h3 className="m-0 mb-1 text-xl font-semibold">{artistName}</h3>
-            <p className="m-0 text-sm opacity-90">아티스트와 1:1 채팅</p>
+            <p className="m-0 text-sm opacity-90">작가와 1:1 채팅</p>
           </div>
           <button 
             onClick={onClose}
@@ -110,7 +110,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, onClose, artistName }
         <div className="flex-1 overflow-y-auto p-5 bg-slate-50">
           {messages.length === 0 ? (
             <div className="text-center py-10 px-5 text-slate-500">
-              <h4 className="m-0 mb-2 text-gray-900 text-lg">아티스트와 대화를 시작하세요</h4>
+              <h4 className="m-0 mb-2 text-gray-900 text-lg">작가와 대화를 시작하세요</h4>
               <p className="m-0 leading-relaxed text-sm">
                 작품에 대한 질문이나<br />
                 구매 문의를 자유롭게 해주세요

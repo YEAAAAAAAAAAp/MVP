@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
           onClick={() => navigate('/artist/register')}
           className="fixed bottom-10 right-10 max-md:bottom-5 max-md:right-5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-none px-6 py-4 max-md:px-5 max-md:py-3 rounded-full text-base max-md:text-sm font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:-translate-y-0.5 z-[100] whitespace-nowrap"
         >
-          아티스트인가요?
+          작가인가요?
         </button>
       )}
 

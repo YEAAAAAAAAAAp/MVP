@@ -13,9 +13,6 @@ import PurchasePage from './pages/PurchasePage'
 import ArtistRegisterPage from './pages/ArtistRegisterPage'
 import CollectorRegisterPage from './pages/CollectorRegisterPage'
 import LoginPage from './pages/LoginPage'
-import ArtistLoginPage from './pages/ArtistLoginPage'
-import ArtistDashboardPage from './pages/ArtistDashboardPage'
-import CollectorDashboardPage from './pages/CollectorDashboardPage'
 
 // Components
 import Header from './components/common/Header'
@@ -47,10 +44,7 @@ const App: React.FC = () => {
             <Route path="/contact/:artist" element={<ContactArtistPage />} />
             <Route path="/purchase/:id" element={<PurchasePage />} />
             <Route path="/artist/register" element={<ArtistRegisterPage />} />
-            <Route path="/artist/login" element={<ArtistLoginPage />} />
-            <Route path="/artist/dashboard" element={<ArtistDashboardPage />} />
             <Route path="/collector/register" element={<CollectorRegisterPage />} />
-            <Route path="/collector/dashboard" element={<CollectorDashboardPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
         </MainContent>

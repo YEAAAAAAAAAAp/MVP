@@ -244,7 +244,7 @@ const ArtistLoginPage: React.FC = () => {
         <Container>
           <Header>
             <Logo>ARTRA</Logo>
-            <Title>아티스트 로그인</Title>
+            <Title>작가 로그인</Title>
             <Subtitle>작품을 세상에 선보이세요</Subtitle>
           </Header>
 
@@ -301,9 +301,9 @@ const ArtistLoginPage: React.FC = () => {
           </Divider>
 
           <RegisterLink>
-            <p>아직 아티스트 회원이 아니신가요?</p>
+            <p>아직 작가 회원이 아니신가요?</p>
             <button onClick={() => navigate('/artist/register')}>
-              아티스트 회원가입
+              작가 회원가입
             </button>
           </RegisterLink>
         </Container>

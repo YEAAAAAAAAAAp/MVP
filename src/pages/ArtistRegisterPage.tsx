@@ -297,7 +297,7 @@ const ArtistRegisterPage: React.FC = () => {
             ← 홈으로 돌아가기
           </BackButton>
           <LoginLinkTop>
-            이미 승인된 아티스트이신가요?
+            이미 승인된 작가이신가요?
             <button onClick={() => navigate('/login?type=artist')}>
               로그인
             </button>
@@ -306,8 +306,8 @@ const ArtistRegisterPage: React.FC = () => {
         
         <Header>
           <Logo>ARTRA</Logo>
-          <Title>아티스트 회원가입</Title>
-          <Subtitle>예술가와 콜렉터를 연결합니다</Subtitle>
+          <Title>작가 회원가입</Title>
+          <Subtitle>예술가와 컬렉터를 연결합니다</Subtitle>
         </Header>
 
         <InfoBox>
@@ -366,7 +366,7 @@ const ArtistRegisterPage: React.FC = () => {
 
           <FormGroup>
             <Label>
-              활동명 (아티스트명)<span className="required">*</span>
+              활동명 (작가명)<span className="required">*</span>
             </Label>
             <Input
               type="text"
@@ -379,7 +379,7 @@ const ArtistRegisterPage: React.FC = () => {
           </FormGroup>
 
           <FormGroup>
-            <Label>아티스트 소개</Label>
+            <Label>작가 소개</Label>
             <Textarea
               name="bio"
               placeholder="자신의 작품 세계와 예술관을 소개해주세요"
