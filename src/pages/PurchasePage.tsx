@@ -52,7 +52,7 @@ const PurchasePage: React.FC = () => {
                 />
                 <div className="flex-1">
                   <h3 className="text-[1.2rem] my-0 mb-[5px] text-[#1a1a1a]">{artwork.title}</h3>
-                  <p className="my-[3px] text-slate-500 text-[0.95rem]">작가: {artwork.artist}</p>
+                  <p className="my-[3px] text-slate-500 text-[0.95rem]">아티스트: {artwork.artist}</p>
                   <p className="my-[3px] text-slate-500 text-[0.95rem]">크기: 60x80cm / Oil on canvas</p>
                 </div>
                 <div className="text-right">
@@ -65,15 +65,21 @@ const PurchasePage: React.FC = () => {
             <div className="bg-white rounded-2xl p-[30px] shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
               <h2 className="text-[1.3rem] mb-5 text-[#1a1a1a] font-semibold">구매자 정보</h2>
               <div className="mb-[25px]">
-                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">이름</label>
+                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">
+                  이름 <span className="text-red-500">*</span>
+                </label>
                 <input type="text" placeholder="홍길동" className="w-full py-3 px-4 border border-gray-200 rounded-lg text-base transition-colors duration-200 focus:outline-none focus:border-[#667eea] placeholder:text-gray-400" />
               </div>
               <div className="mb-[25px]">
-                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">연락처</label>
+                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">
+                  연락처 <span className="text-red-500">*</span>
+                </label>
                 <input type="tel" placeholder="010-1234-5678" className="w-full py-3 px-4 border border-gray-200 rounded-lg text-base transition-colors duration-200 focus:outline-none focus:border-[#667eea] placeholder:text-gray-400" />
               </div>
               <div className="mb-[25px]">
-                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">이메일</label>
+                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">
+                  이메일 <span className="text-red-500">*</span>
+                </label>
                 <input type="email" placeholder="example@email.com" className="w-full py-3 px-4 border border-gray-200 rounded-lg text-base transition-colors duration-200 focus:outline-none focus:border-[#667eea] placeholder:text-gray-400" />
               </div>
             </div>
@@ -81,11 +87,15 @@ const PurchasePage: React.FC = () => {
             <div className="bg-white rounded-2xl p-[30px] shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
               <h2 className="text-[1.3rem] mb-5 text-[#1a1a1a] font-semibold">배송 정보</h2>
               <div className="mb-[25px]">
-                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">배송 주소</label>
+                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">
+                  배송 주소 <span className="text-red-500">*</span>
+                </label>
                 <input type="text" placeholder="서울시 강남구 테헤란로 123" className="w-full py-3 px-4 border border-gray-200 rounded-lg text-base transition-colors duration-200 focus:outline-none focus:border-[#667eea] placeholder:text-gray-400" />
               </div>
               <div className="mb-[25px]">
-                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">상세 주소</label>
+                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">
+                  상세 주소 <span className="text-red-500">*</span>
+                </label>
                 <input type="text" placeholder="4층 401호" className="w-full py-3 px-4 border border-gray-200 rounded-lg text-base transition-colors duration-200 focus:outline-none focus:border-[#667eea] placeholder:text-gray-400" />
               </div>
               <div className="mb-[25px]">
@@ -97,7 +107,9 @@ const PurchasePage: React.FC = () => {
             <div className="bg-white rounded-2xl p-[30px] shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
               <h2 className="text-[1.3rem] mb-5 text-[#1a1a1a] font-semibold">결제 수단</h2>
               <div className="mb-[25px]">
-                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">결제 방법</label>
+                <label className="block text-[0.95rem] font-semibold text-[#1a1a1a] mb-2">
+                  결제 방법 <span className="text-red-500">*</span>
+                </label>
                 <select className="w-full py-3 px-4 border border-gray-200 rounded-lg text-base bg-white cursor-pointer transition-colors duration-200 focus:outline-none focus:border-[#667eea]">
                   <option>신용/체크카드</option>
                   <option>계좌이체</option>
@@ -113,7 +125,9 @@ const PurchasePage: React.FC = () => {
                     onChange={(e) => setAgreed(e.target.checked)}
                     className="w-[18px] h-[18px] cursor-pointer"
                   />
-                  <span className="text-[0.95rem] text-[#1a1a1a]">구매 약관 및 개인정보 처리방침에 동의합니다</span>
+                  <span className="text-[0.95rem] text-[#1a1a1a]">
+                    구매 약관 및 개인정보 처리방침에 동의합니다 <span className="text-red-500">*</span>
+                  </span>
                 </label>
               </div>
 
@@ -173,7 +187,7 @@ const PurchasePage: React.FC = () => {
                   <div className="flex-1">
                     <div className="font-semibold text-base mb-[5px]">투명한 프로세스</div>
                     <div className="text-[0.9rem] opacity-90 leading-[1.5]">
-                      검증된 작가와의 직거래로 공정한 가격과 안전한 거래를 보장합니다.
+                      검증된 아티스트와의 직거래로 공정한 가격과 안전한 거래를 보장합니다.
                     </div>
                   </div>
                 </li>

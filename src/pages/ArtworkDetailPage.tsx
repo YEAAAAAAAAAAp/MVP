@@ -89,7 +89,7 @@ const ArtworkDetailPage: React.FC = () => {
               onClick={handleContactArtist}
               className="bg-white text-[#667eea] border-2 border-[#667eea] py-[13px] px-[30px] rounded-[50px] text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-[#667eea] hover:text-white hover:-translate-y-0.5"
             >
-              작가에게 물어보기
+              아티스트에게 물어보기
             </button>
           </div>
         </div>
@@ -118,7 +118,7 @@ const ArtworkDetailPage: React.FC = () => {
                   <div className="text-[#1a1a1a] font-medium leading-[1.5]">{artwork.title}</div>
                 </div>
                 <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
-                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">작가명</div>
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">아티스트명</div>
                   <div className="text-[#1a1a1a] font-medium leading-[1.5]">{artwork.artist}</div>
                 </div>
                 <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
@@ -136,7 +136,7 @@ const ArtworkDetailPage: React.FC = () => {
                 <div className="grid grid-cols-[140px_1fr] py-[15px] max-md:grid-cols-1 max-md:gap-2">
                   <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">설명</div>
                   <div className="text-[#1a1a1a] font-medium leading-[1.5]">
-                    클럽 시 작가 프로필로 이동<br/>
+                    클릭 시 아티스트 프로필로 이동<br/>
                     시장 데이터 기반 가이드 표시
                   </div>
                 </div>
@@ -155,7 +155,7 @@ const ArtworkDetailPage: React.FC = () => {
               onClick={handleContactArtist}
               className="bg-white text-[#667eea] border-2 border-[#667eea] py-4 px-[38px] rounded-[50px] text-[1.2rem] font-semibold cursor-pointer transition-all duration-300 hover:bg-[#667eea] hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(102,126,234,0.3)]"
             >
-              작가에게 구매 문의하기
+              아티스트에게 구매 문의하기
             </button>
           </div>
           <div className="text-slate-500 text-[0.95rem] font-medium text-center">
