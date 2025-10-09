@@ -52,7 +52,7 @@ const PurchasePage: React.FC = () => {
                 />
                 <div className="flex-1">
                   <h3 className="text-[1.2rem] my-0 mb-[5px] text-[#1a1a1a]">{artwork.title}</h3>
-                  <p className="my-[3px] text-slate-500 text-[0.95rem]">작가: {artwork.artist}</p>
+                  <p className="my-[3px] text-slate-500 text-[0.95rem]">아티스트: {artwork.artist}</p>
                   <p className="my-[3px] text-slate-500 text-[0.95rem]">크기: 60x80cm / Oil on canvas</p>
                 </div>
                 <div className="text-right">
@@ -187,7 +187,7 @@ const PurchasePage: React.FC = () => {
                   <div className="flex-1">
                     <div className="font-semibold text-base mb-[5px]">투명한 프로세스</div>
                     <div className="text-[0.9rem] opacity-90 leading-[1.5]">
-                      검증된 작가와의 직거래로 공정한 가격과 안전한 거래를 보장합니다.
+                      검증된 아티스트와의 직거래로 공정한 가격과 안전한 거래를 보장합니다.
                     </div>
                   </div>
                 </li>

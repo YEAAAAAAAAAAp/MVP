@@ -42,7 +42,7 @@ const Header: React.FC = () => {
             <>
               <div className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[20px] text-white text-sm font-medium">
                 <span className="bg-white/30 px-2 py-1 rounded-[10px] text-xs">
-                  {user.type === 'artist' ? '🎨 작가' : '👤 컬렉터'}
+                  {user.type === 'artist' ? '🎨 아티스트' : '👤 콜렉터'}
                 </span>
                 <span>{user.name}</span>
               </div>
