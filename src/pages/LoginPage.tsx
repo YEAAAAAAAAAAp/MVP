@@ -310,7 +310,7 @@ const LoginPage: React.FC = () => {
       type: userType
     })
     
-    alert(`${userType === 'artist' ? '작가' : '컬렉터'} 로그인 성공!`)
+    alert(`${userType === 'artist' ? '아티스트' : '콜렉터'} 로그인 성공!`)
     navigate('/')
   }
 
@@ -330,7 +330,7 @@ const LoginPage: React.FC = () => {
                 navigate('/collector/register')
               }
             }}>
-              {userType === 'artist' ? '작가 회원가입' : '컬렉터 회원가입'}
+              {userType === 'artist' ? '아티스트 회원가입' : '콜렉터 회원가입'}
             </button>
           </RegisterLinkTop>
         </TopNav>
@@ -338,7 +338,7 @@ const LoginPage: React.FC = () => {
         <Header>
           <Logo>ARTRA</Logo>
           <Title>로그인</Title>
-          <Subtitle>예술가와 컬렉터를 연결합니다</Subtitle>
+          <Subtitle>예술가와 콜렉터를 연결합니다</Subtitle>
         </Header>
 
           <UserTypeSelector>
@@ -347,14 +347,14 @@ const LoginPage: React.FC = () => {
               onClick={() => setUserType('collector')}
               type="button"
             >
-              👤 컬렉터
+              👤 콜렉터
             </UserTypeButton>
             <UserTypeButton 
               $active={userType === 'artist'} 
               onClick={() => setUserType('artist')}
               type="button"
             >
-              🎨 작가
+              🎨 아티스트
             </UserTypeButton>
           </UserTypeSelector>
 
@@ -412,16 +412,16 @@ const LoginPage: React.FC = () => {
           <RegisterLink>
             {userType === 'artist' ? (
               <>
-                <p>아직 작가 회원이 아니신가요?</p>
+                <p>아직 아티스트 회원이 아니신가요?</p>
                 <button onClick={() => navigate('/artist/register')}>
-                  작가 회원가입
+                  아티스트 회원가입
                 </button>
               </>
             ) : (
               <>
                 <p>아직 회원이 아니신가요?</p>
                 <button onClick={() => navigate('/collector/register')}>
-                  컬렉터 회원가입
+                  콜렉터 회원가입
                 </button>
               </>
             )}
