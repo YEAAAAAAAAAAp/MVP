@@ -1,185 +1,8 @@
 import React, { useEffect } from 'react'
-import styled, { keyframes } from 'styled-components'
 
 interface AIMatchingLoaderProps {
   onComplete: () => void;
 }
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-`
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-`
-
-const pulse = keyframes`
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
-`
-
-const LoaderContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: ${fadeIn} 0.5s ease-out;
-  padding: 0 60px;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 40px 20px;
-  }
-`
-
-const ContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  width: 100%;
-  gap: 100px;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 60px;
-  }
-`
-
-const TextSection = styled.div`
-  flex: 1;
-  text-align: left;
-  
-  @media (max-width: 768px) {
-    text-align: center;
-    order: 2;
-  }
-`
-
-const FrameSection = styled.div`
-  flex-shrink: 0;
-  
-  @media (max-width: 768px) {
-    order: 1;
-  }
-`
-
-const LoaderFrame = styled.div`
-  width: 400px;
-  height: 480px;
-  background: linear-gradient(45deg, #d4af37, #ffd700, #b8860b);
-  border-radius: 20px;
-  padding: 20px;
-  position: relative;
-  margin-bottom: 60px;
-  animation: ${float} 3s ease-in-out infinite;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    background: linear-gradient(45deg, #8b7355, #a0895a);
-    border-radius: 12px;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    background: #f8fafc;
-    border-radius: 8px;
-  }
-`
-
-const LoaderContent = styled.div`
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  right: 30px;
-  bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border-radius: 8px;
-  z-index: 2;
-`
-
-const AIIcon = styled.div`
-  width: 120px;
-  height: 120px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  animation: ${pulse} 2s ease-in-out infinite;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  
-  &::before {
-    content: '🤖';
-    font-size: 4rem;
-  }
-`
-
-const LoadingDots = styled.div`
-  display: flex;
-  gap: 8px;
-  
-  .dot {
-    width: 12px;
-    height: 12px;
-    background: #667eea;
-    border-radius: 50%;
-    animation: ${pulse} 1.5s ease-in-out infinite;
-    
-    &:nth-child(1) { animation-delay: 0s; }
-    &:nth-child(2) { animation-delay: 0.3s; }
-    &:nth-child(3) { animation-delay: 0.6s; }
-  }
-`
-
-const MainText = styled.div`
-  color: #1a1a1a;
-  
-  .main-text {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-    
-    @media (max-width: 768px) {
-      font-size: 2rem;
-    }
-  }
-  
-  .sub-text {
-    font-size: 1.2rem;
-    color: #64748b;
-    line-height: 1.6;
-    
-    @media (max-width: 768px) {
-      font-size: 1rem;
-    }
-  }
-`
 
 const AIMatchingLoader: React.FC<AIMatchingLoaderProps> = ({ onComplete }) => {
   useEffect(() => {
@@ -191,33 +14,43 @@ const AIMatchingLoader: React.FC<AIMatchingLoaderProps> = ({ onComplete }) => {
   }, [onComplete])
 
   return (
-    <LoaderContainer>
-      <ContentWrapper>
-        <TextSection>
-          <MainText>
-            <div className="main-text">
+    <div className="fixed inset-0 bg-white flex items-center justify-center z-[1000] animate-fadeIn px-[60px] max-md:flex-col max-md:px-10 max-md:py-10">
+      <div className="flex items-center justify-between max-w-[1200px] w-full gap-[100px] max-md:flex-col max-md:gap-[60px]">
+        {/* Text Section */}
+        <div className="flex-1 text-left max-md:text-center max-md:order-2">
+          <div className="text-gray-900">
+            <div className="text-5xl max-md:text-3xl font-bold leading-tight mb-5 tracking-tight">
               당신에게<br />
               딱 맞는<br />
               그림을<br />
               찾아드립니다
             </div>
-          </MainText>
-        </TextSection>
+          </div>
+        </div>
         
-        <FrameSection>
-          <LoaderFrame>
-            <LoaderContent>
-              <AIIcon />
-              <LoadingDots>
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-              </LoadingDots>
-            </LoaderContent>
-          </LoaderFrame>
-        </FrameSection>
-      </ContentWrapper>
-    </LoaderContainer>
+        {/* Frame Section */}
+        <div className="flex-shrink-0 max-md:order-1">
+          <div className="w-[400px] h-[480px] bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8860b] rounded-[20px] p-5 relative mb-[60px] animate-float
+            before:content-[''] before:absolute before:top-3 before:left-3 before:right-3 before:bottom-3 before:bg-gradient-to-br before:from-[#8b7355] before:to-[#a0895a] before:rounded-xl
+            after:content-[''] after:absolute after:top-5 after:left-5 after:right-5 after:bottom-5 after:bg-slate-50 after:rounded-lg">
+            
+            <div className="absolute top-[30px] left-[30px] right-[30px] bottom-[30px] flex flex-col items-center justify-center bg-transparent rounded-lg z-[2]">
+              {/* AI Icon */}
+              <div className="w-[120px] h-[120px] bg-white rounded-full flex items-center justify-center mb-8 animate-pulse shadow-lg
+                before:content-['🤖'] before:text-6xl">
+              </div>
+              
+              {/* Loading Dots */}
+              <div className="flex gap-2">
+                <div className="w-3 h-3 bg-indigo-500 rounded-full animate-pulse" style={{animationDelay: '0s'}}></div>
+                <div className="w-3 h-3 bg-indigo-500 rounded-full animate-pulse" style={{animationDelay: '0.3s'}}></div>
+                <div className="w-3 h-3 bg-indigo-500 rounded-full animate-pulse" style={{animationDelay: '0.6s'}}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

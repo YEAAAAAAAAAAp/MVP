@@ -1,5 +1,4 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
 import { Artwork } from '../../types'
 
 interface ArtFrameProps {
@@ -8,138 +7,43 @@ interface ArtFrameProps {
   onClick?: () => void;
 }
 
-const frameAnimation = keyframes`
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-`
-
-const FrameContainer = styled.div<{ $isHovered?: boolean }>`
-  position: relative;
-  width: 500px;
-  height: 650px;
-  margin: 0 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.4));
-  
-  &:hover {
-    transform: translateY(-15px);
-    animation: ${frameAnimation} 0.6s ease-in-out;
-  }
-`
-
-const Frame = styled.div`
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #d4af37, #ffd700, #b8860b);
-  border-radius: 20px;
-  padding: 25px;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    background: linear-gradient(45deg, #8b7355, #a0895a);
-    border-radius: 12px;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 22px;
-    left: 22px;
-    right: 22px;
-    bottom: 22px;
-    background: #2c2c2c;
-    border-radius: 6px;
-  }
-`
-
-const ArtworkImage = styled.img`
-  position: absolute;
-  top: 35px;
-  left: 35px;
-  right: 35px;
-  bottom: 35px;
-  width: calc(100% - 70px);
-  height: calc(100% - 70px);
-  object-fit: cover;
-  border-radius: 6px;
-  z-index: 2;
-`
-
-const QuestionMark = styled.div`
-  position: absolute;
-  top: 35px;
-  left: 35px;
-  right: 35px;
-  bottom: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-size: 10rem;
-  font-weight: bold;
-  border-radius: 6px;
-  z-index: 2;
-  
-  &::before {
-    content: '?';
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-  }
-`
-
-const ArtInfo = styled.div`
-  position: absolute;
-  bottom: -60px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: var(--text-primary);
-  
-  h4 {
-    margin: 0 0 8px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  
-  p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-  }
-`
-
 const ArtFrame: React.FC<ArtFrameProps> = ({ 
   artwork, 
   isQuestionMark = false, 
   onClick 
 }) => {
   return (
-    <FrameContainer onClick={onClick}>
-      <Frame>
+    <div 
+      onClick={onClick}
+      className="relative w-[500px] h-[650px] mx-5 cursor-pointer transition-all duration-300 drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:-translate-y-4 hover:animate-[frame_0.6s_ease-in-out]"
+    >
+      <div className="w-full h-full bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8860b] rounded-[20px] p-[25px] relative
+        before:content-[''] before:absolute before:top-[15px] before:left-[15px] before:right-[15px] before:bottom-[15px] before:bg-gradient-to-br before:from-[#8b7355] before:to-[#a0895a] before:rounded-xl
+        after:content-[''] after:absolute after:top-[22px] after:left-[22px] after:right-[22px] after:bottom-[22px] after:bg-[#2c2c2c] after:rounded-md"
+      >
         {isQuestionMark ? (
-          <QuestionMark />
+          <div className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 text-white text-[10rem] font-bold rounded-md z-[2]
+            before:content-['?'] before:drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
+          />
         ) : (
           <>
-            <ArtworkImage 
+            <img 
               src={artwork?.imageUrl || '/placeholder-art.jpg'} 
-              alt={artwork?.title || 'Artwork'} 
+              alt={artwork?.title || 'Artwork'}
+              className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] w-[calc(100%-70px)] h-[calc(100%-70px)] object-cover rounded-md z-[2]"
             />
-            <ArtInfo>
-              <h4>{artwork?.title || 'Unknown Title'}</h4>
-              <p>{artwork?.artist || 'Unknown Artist'}</p>
-            </ArtInfo>
+            <div className="absolute -bottom-[60px] left-0 right-0 text-center text-gray-800">
+              <h4 className="m-0 mb-2 text-lg font-semibold">
+                {artwork?.title || 'Unknown Title'}
+              </h4>
+              <p className="m-0 text-[0.95rem] text-gray-600">
+                {artwork?.artist || 'Unknown Artist'}
+              </p>
+            </div>
           </>
         )}
-      </Frame>
-    </FrameContainer>
+      </div>
+    </div>
   )
 }
 

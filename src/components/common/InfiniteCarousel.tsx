@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
 import { Artwork } from '../../types'
 import ArtFrame from './ArtFrame'
 
@@ -8,52 +7,6 @@ interface InfiniteCarouselProps {
   onArtworkClick: (artwork: Artwork) => void;
   onAIMatchClick: () => void;
 }
-
-const scroll = keyframes`
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-`
-
-const CarouselContainer = styled.div`
-  width: 100%;
-  height: 80vh;
-  min-height: 800px;
-  overflow: hidden;
-  position: relative;
-  margin: 40px 0;
-  
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 300px;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
-  }
-  
-  &::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  }
-  
-  &::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  }
-`
-
-const CarouselTrack = styled.div<{ $speed: number }>`
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  animation: ${scroll} ${props => props.$speed}s linear infinite;
-  
-  &:hover {
-    animation-play-state: paused;
-  }
-`
 
 const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({ 
   artworks, 
@@ -88,8 +41,8 @@ const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({
   }
 
   return (
-    <CarouselContainer>
-      <CarouselTrack $speed={120}>
+    <div className="w-full h-[80vh] min-h-[800px] overflow-hidden relative my-10 before:content-[''] before:absolute before:top-0 before:left-0 before:w-[300px] before:h-full before:z-10 before:pointer-events-none before:bg-gradient-to-r before:from-white before:to-transparent after:content-[''] after:absolute after:top-0 after:right-0 after:w-[300px] after:h-full after:z-10 after:pointer-events-none after:bg-gradient-to-l after:from-white after:to-transparent">
+      <div className="flex items-center w-fit animate-scroll hover:[animation-play-state:paused]">
         {displayItems.map((item, index) => (
           <ArtFrame
             key={`${typeof item === 'string' ? 'question' : item.id}-${index}`}
@@ -98,8 +51,8 @@ const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({
             onClick={() => handleItemClick(item)}
           />
         ))}
-      </CarouselTrack>
-    </CarouselContainer>
+      </div>
+    </div>
   )
 }
 

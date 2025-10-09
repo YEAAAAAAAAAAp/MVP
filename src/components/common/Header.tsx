@@ -1,112 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
-
-const HeaderContainer = styled.header`
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid var(--border-color);
-  padding: var(--spacing-4) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow);
-`
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: var(--wide);
-  margin: 0 auto;
-  padding: 0 var(--spacing-4);
-`
-
-const Logo = styled.h1`
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  color: var(--primary-color);
-  margin: 0;
-`
-
-const NavLinks = styled.div`
-  display: flex;
-  gap: var(--spacing-6);
-  
-  @media (max-width: 768px) {
-    gap: var(--spacing-4);
-  }
-`
-
-const NavLink = styled(Link)`
-  color: var(--text-primary);
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  
-  &:hover {
-    color: var(--primary-color);
-  }
-`
-
-const UserSection = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-`
-
-const UserInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  
-  .badge {
-    background: rgba(255, 255, 255, 0.3);
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-size: 0.75rem;
-  }
-`
-
-const LoginButton = styled(Link)`
-  padding: 8px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-  }
-`
-
-const LogoutButton = styled.button`
-  padding: 8px 16px;
-  background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #667eea;
-    color: white;
-  }
-`
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
@@ -118,29 +12,58 @@ const Header: React.FC = () => {
   }
 
   return (
-    <HeaderContainer>
-      <Nav>
-        <Logo>ARTRA</Logo>
-        <NavLinks>
-          <NavLink to="/">홈</NavLink>
-          <NavLink to="/artist">아티스트</NavLink>
-          <NavLink to="/collector">콜렉터</NavLink>
-        </NavLinks>
-        <UserSection>
+    <header className="bg-white border-b border-gray-200 py-4 sticky top-0 z-[100] shadow-sm">
+      <nav className="flex justify-between items-center max-w-7xl mx-auto px-4">
+        <h1 className="text-2xl font-bold text-blue-600 m-0">ARTRA</h1>
+        
+        <div className="flex gap-6 md:gap-4">
+          <Link 
+            to="/" 
+            className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600"
+          >
+            홈
+          </Link>
+          <Link 
+            to="/artist" 
+            className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600"
+          >
+            아티스트
+          </Link>
+          <Link 
+            to="/collector" 
+            className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600"
+          >
+            콜렉터
+          </Link>
+        </div>
+        
+        <div className="flex items-center gap-4">
           {isAuthenticated && user ? (
             <>
-              <UserInfo>
-                <span className="badge">{user.type === 'artist' ? '🎨 작가' : '👤 컬렉터'}</span>
+              <div className="flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[20px] text-white text-sm font-medium">
+                <span className="bg-white/30 px-2 py-1 rounded-[10px] text-xs">
+                  {user.type === 'artist' ? '🎨 작가' : '👤 컬렉터'}
+                </span>
                 <span>{user.name}</span>
-              </UserInfo>
-              <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+              </div>
+              <button 
+                onClick={handleLogout}
+                className="px-4 py-2 bg-white text-indigo-500 border-2 border-indigo-500 rounded-[20px] font-semibold text-sm cursor-pointer transition-all hover:bg-indigo-500 hover:text-white"
+              >
+                로그아웃
+              </button>
             </>
           ) : (
-            <LoginButton to="/login">로그인</LoginButton>
+            <Link 
+              to="/login"
+              className="px-5 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white no-underline rounded-[20px] font-semibold text-sm transition-all shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              로그인
+            </Link>
           )}
-        </UserSection>
-      </Nav>
-    </HeaderContainer>
+        </div>
+      </nav>
+    </header>
   )
 }
 

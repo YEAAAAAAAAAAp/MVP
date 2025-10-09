@@ -1,338 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 import { mockArtworks } from '../utils/mockData'
 import ChatSidebar from '../components/common/ChatSidebar'
-
-const PageContainer = styled.div<{ $chatOpen: boolean }>`
-  min-height: 100vh;
-  background: #f8fafc;
-  padding: 40px 20px;
-  transition: padding-right 0.3s ease-out;
-  
-  @media (min-width: 769px) {
-    padding-right: ${props => props.$chatOpen ? '470px' : '20px'};
-  }
-`
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-  
-  @media (max-width: 968px) {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-`
-
-const ImageSection = styled.div`
-  position: sticky;
-  top: 40px;
-`
-
-const ArtworkFrame = styled.div`
-  background: linear-gradient(45deg, #d4af37, #ffd700, #b8860b);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  
-  &::before {
-    content: '';
-    display: block;
-    padding-bottom: 125%; /* 4:5 비율 */
-  }
-`
-
-const ArtworkImage = styled.img`
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  right: 30px;
-  bottom: 30px;
-  width: calc(100% - 60px);
-  height: calc(100% - 60px);
-  object-fit: cover;
-  border-radius: 8px;
-`
-
-const InfoSection = styled.div`
-  padding: 20px 0;
-`
-
-const ArtistInfo = styled.div`
-  margin-bottom: 40px;
-  
-  h1 {
-    font-size: 2.5rem;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-  
-  .artist-name {
-    font-size: 1.3rem;
-    color: #667eea;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  
-  .price {
-    font-size: 2rem;
-    color: #1a1a1a;
-    font-weight: 700;
-    margin-bottom: 30px;
-  }
-`
-
-const Description = styled.div`
-  margin-bottom: 40px;
-  
-  h3 {
-    font-size: 1.2rem;
-    color: #1a1a1a;
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
-  
-  p {
-    color: #64748b;
-    line-height: 1.7;
-    margin-bottom: 15px;
-  }
-`
-
-const ActionButtons = styled.div`
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-`
-
-const PrimaryButton = styled.button`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-  }
-`
-
-const SecondaryButton = styled.button`
-  background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
-  padding: 13px 30px;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #667eea;
-    color: white;
-    transform: translateY(-2px);
-  }
-`
-
-const BackButton = styled.button`
-  background: none;
-  border: none;
-  color: #64748b;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-bottom: 30px;
-  padding: 10px 0;
-  transition: color 0.2s ease;
-  
-  &:hover {
-    color: #1a1a1a;
-  }
-  
-  &::before {
-    content: '← ';
-    margin-right: 5px;
-  }
-`
-
-const PricingSection = styled.section`
-  background: #f8fafc;
-  padding: 80px 20px;
-  margin-top: 60px;
-`
-
-const PricingContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-`
-
-const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 60px;
-  font-weight: 700;
-`
-
-const PricingContent = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 60px;
-  margin-bottom: 60px;
-  
-  @media (max-width: 968px) {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-`
-
-const PriceCard = styled.div`
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  height: fit-content;
-`
-
-const PriceTitle = styled.h3`
-  font-size: 1.2rem;
-  color: #64748b;
-  margin-bottom: 20px;
-  font-weight: 600;
-`
-
-const MainPrice = styled.div`
-  font-size: 3rem;
-  color: #1a1a1a;
-  font-weight: 700;
-  margin-bottom: 30px;
-  
-  @media (max-width: 768px) {
-    font-size: 2.2rem;
-  }
-`
-
-const PriceNote = styled.div`
-  color: #64748b;
-  line-height: 1.8;
-  font-size: 0.95rem;
-`
-
-const InfoTable = styled.div`
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-`
-
-const InfoTitle = styled.h3`
-  font-size: 1.5rem;
-  color: #1a1a1a;
-  margin-bottom: 30px;
-  font-weight: 600;
-`
-
-const TableContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-`
-
-const InfoRow = styled.div`
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 15px 0;
-  
-  &:last-child {
-    border-bottom: none;
-  }
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-`
-
-const InfoLabel = styled.div`
-  color: #64748b;
-  font-weight: 500;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: flex-start;
-  padding-top: 2px;
-`
-
-const InfoValue = styled.div`
-  color: #1a1a1a;
-  font-weight: 500;
-  line-height: 1.5;
-`
-
-const FinalActions = styled.div`
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-`
-
-const FinalPrimaryButton = styled.button`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 18px 40px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
-  }
-`
-
-const FinalSecondaryButton = styled.button`
-  background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
-  padding: 16px 38px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #667eea;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-  }
-`
-
-const GuaranteeText = styled.div`
-  color: #64748b;
-  font-size: 0.95rem;
-  font-weight: 500;
-`
 
 const ArtworkDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -364,121 +33,143 @@ const ArtworkDetailPage: React.FC = () => {
   }
 
   return (
-    <PageContainer $chatOpen={isChatOpen}>
-      <ContentWrapper>
-        <ImageSection>
-          <BackButton onClick={() => navigate('/')}>
+    <div 
+      className="min-h-screen bg-slate-50 py-10 px-5 transition-[padding-right] duration-300 ease-out"
+      style={{ paddingRight: isChatOpen && window.innerWidth >= 769 ? '470px' : undefined }}
+    >
+      <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-[60px] items-start max-[968px]:grid-cols-1 max-[968px]:gap-10">
+        <div className="sticky top-10">
+          <button 
+            onClick={() => navigate('/')}
+            className="bg-transparent border-0 text-slate-500 text-base cursor-pointer mb-[30px] py-[10px] px-0 transition-colors duration-200 hover:text-[#1a1a1a] before:content-['←_'] before:mr-[5px]"
+          >
             홈으로 돌아가기
-          </BackButton>
-          <ArtworkFrame>
-            <ArtworkImage src={artwork.imageUrl} alt={artwork.title} />
-          </ArtworkFrame>
-        </ImageSection>
+          </button>
+          <div className="bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8860b] rounded-[20px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.15)] relative before:content-[''] before:block before:pb-[125%]">
+            <img 
+              src={artwork.imageUrl} 
+              alt={artwork.title}
+              className="absolute top-[30px] left-[30px] right-[30px] bottom-[30px] w-[calc(100%-60px)] h-[calc(100%-60px)] object-cover rounded-lg z-10"
+            />
+          </div>
+        </div>
         
-        <InfoSection>
-          <ArtistInfo>
-            <h1>{artwork.title}</h1>
-            <div className="artist-name">{artwork.artist}</div>
-            <div className="price">
+        <div className="py-5">
+          <div className="mb-10">
+            <h1 className="text-[2.5rem] text-[#1a1a1a] mb-[10px] font-bold">{artwork.title}</h1>
+            <div className="text-[1.3rem] text-[#667eea] font-semibold mb-5">{artwork.artist}</div>
+            <div className="text-[2rem] text-[#1a1a1a] font-bold mb-[30px]">
               ₩ {artwork.price?.toLocaleString()}
             </div>
-          </ArtistInfo>
+          </div>
           
-          <Description>
-            <h3>작품 설명</h3>
-            <p>
+          <div className="mb-10">
+            <h3 className="text-[1.2rem] text-[#1a1a1a] mb-[15px] font-semibold">작품 설명</h3>
+            <p className="text-slate-500 leading-[1.7] mb-[15px]">
               시미안의 초상화는 19세기 말 프랑스의 가장 유명한 시미안의 내면을 그림 작품으로 알려져 있다. 
               시미안은 원래 저명한 미술가였으나, 인간의 얼굴이 사회적 가면에 불과하다는 깨달음을 이후 
               초상화의 전통적 개념을 해체하기 시작했다.
             </p>
-            <p>
+            <p className="text-slate-500 leading-[1.7] mb-[15px]">
               그는 모델의 외형보다 그들의 욕망, 좌절감, 두려움 같은 심리의 그림자를 그리려 했다. 
               이 작품은 그의 미지막 시기, 광기에 가까운 고독 속에서 완성된 것으로 전해진다. 
               완성 직후 시미안은 세상을 떠났다. 그래서 시미안의 초상화는 단순한 초상이 아니라, 
               한 예술가의 '인간'이라는 존재를 묻까지 추적하다가 미친 한 절벽의 기록으로 평가된다.
             </p>
-          </Description>
+          </div>
           
-          <ActionButtons>
-            <PrimaryButton onClick={handleScrollToPricing}>
+          <div className="flex gap-[15px] flex-wrap">
+            <button 
+              onClick={handleScrollToPricing}
+              className="bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white border-0 py-[15px] px-[30px] rounded-[50px] text-base font-semibold cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(102,126,234,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(102,126,234,0.6)]"
+            >
               가격정보 알아보기
-            </PrimaryButton>
-            <SecondaryButton onClick={handleContactArtist}>
+            </button>
+            <button 
+              onClick={handleContactArtist}
+              className="bg-white text-[#667eea] border-2 border-[#667eea] py-[13px] px-[30px] rounded-[50px] text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-[#667eea] hover:text-white hover:-translate-y-0.5"
+            >
               작가에게 물어보기
-            </SecondaryButton>
-          </ActionButtons>
-        </InfoSection>
-      </ContentWrapper>
+            </button>
+          </div>
+        </div>
+      </div>
       
-      <PricingSection id="pricing-section">
-        <PricingContainer>
-          <SectionTitle>가격 정보와 거래 과정</SectionTitle>
+      <section id="pricing-section" className="bg-slate-50 py-20 px-5 mt-[60px]">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-[2.5rem] text-[#1a1a1a] text-center mb-[60px] font-bold">가격 정보와 거래 과정</h2>
           
-          <PricingContent>
-            <PriceCard>
-              <PriceTitle>작품 가격</PriceTitle>
-              <MainPrice>₩ {artwork.price?.toLocaleString()}</MainPrice>
-              <PriceNote>
+          <div className="grid grid-cols-[1fr_1.5fr] gap-[60px] mb-[60px] max-[968px]:grid-cols-1 max-[968px]:gap-10">
+            <div className="bg-white p-10 rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.1)] text-center h-fit">
+              <h3 className="text-[1.2rem] text-slate-500 mb-5 font-semibold">작품 가격</h3>
+              <div className="text-5xl text-[#1a1a1a] font-bold mb-[30px] max-md:text-[2.2rem]">₩ {artwork.price?.toLocaleString()}</div>
+              <div className="text-slate-500 leading-[1.8] text-[0.95rem]">
                 • 안전거래를 보장합니다<br/>
                 • 진품 인증서 포함<br/>
                 • 시장 데이터 기반 적정가격 표시
-              </PriceNote>
-            </PriceCard>
+              </div>
+            </div>
             
-            <InfoTable>
-              <InfoTitle>작품 상세 정보</InfoTitle>
-              <TableContainer>
-                <InfoRow>
-                  <InfoLabel>작품명</InfoLabel>
-                  <InfoValue>{artwork.title}</InfoValue>
-                </InfoRow>
-                <InfoRow>
-                  <InfoLabel>작가명</InfoLabel>
-                  <InfoValue>{artwork.artist}</InfoValue>
-                </InfoRow>
-                <InfoRow>
-                  <InfoLabel>작품 크기 / 재료</InfoLabel>
-                  <InfoValue>60x80cm / Oil on canvas</InfoValue>
-                </InfoRow>
-                <InfoRow>
-                  <InfoLabel>등록일 / 거래 상태</InfoLabel>
-                  <InfoValue>2025.09.12 / 판매 중</InfoValue>
-                </InfoRow>
-                <InfoRow>
-                  <InfoLabel>희망가(₩)</InfoLabel>
-                  <InfoValue>{artwork.price?.toLocaleString()}원</InfoValue>
-                </InfoRow>
-                <InfoRow>
-                  <InfoLabel>설명</InfoLabel>
-                  <InfoValue>
+            <div className="bg-white p-10 rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
+              <h3 className="text-2xl text-[#1a1a1a] mb-[30px] font-semibold">작품 상세 정보</h3>
+              <div className="flex flex-col gap-0">
+                <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">작품명</div>
+                  <div className="text-[#1a1a1a] font-medium leading-[1.5]">{artwork.title}</div>
+                </div>
+                <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">작가명</div>
+                  <div className="text-[#1a1a1a] font-medium leading-[1.5]">{artwork.artist}</div>
+                </div>
+                <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">작품 크기 / 재료</div>
+                  <div className="text-[#1a1a1a] font-medium leading-[1.5]">60x80cm / Oil on canvas</div>
+                </div>
+                <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">등록일 / 거래 상태</div>
+                  <div className="text-[#1a1a1a] font-medium leading-[1.5]">2025.09.12 / 판매 중</div>
+                </div>
+                <div className="grid grid-cols-[140px_1fr] border-b border-gray-200 py-[15px] max-md:grid-cols-1 max-md:gap-2">
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">희망가(₩)</div>
+                  <div className="text-[#1a1a1a] font-medium leading-[1.5]">{artwork.price?.toLocaleString()}원</div>
+                </div>
+                <div className="grid grid-cols-[140px_1fr] py-[15px] max-md:grid-cols-1 max-md:gap-2">
+                  <div className="text-slate-500 font-medium text-[0.95rem] flex items-start pt-0.5">설명</div>
+                  <div className="text-[#1a1a1a] font-medium leading-[1.5]">
                     클럽 시 작가 프로필로 이동<br/>
                     시장 데이터 기반 가이드 표시
-                  </InfoValue>
-                </InfoRow>
-              </TableContainer>
-            </InfoTable>
-          </PricingContent>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
-          <FinalActions>
-            <FinalPrimaryButton onClick={handlePurchase}>
+          <div className="flex gap-[15px] justify-center items-center flex-wrap mb-5">
+            <button 
+              onClick={handlePurchase}
+              className="bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white border-0 py-[18px] px-10 rounded-[50px] text-[1.2rem] font-semibold cursor-pointer transition-all duration-300 shadow-[0_8px_25px_rgba(102,126,234,0.4)] hover:-translate-y-0.5 hover:shadow-[0_12px_35px_rgba(102,126,234,0.6)]"
+            >
               작품 구매하기
-            </FinalPrimaryButton>
-            <FinalSecondaryButton onClick={handleContactArtist}>
+            </button>
+            <button 
+              onClick={handleContactArtist}
+              className="bg-white text-[#667eea] border-2 border-[#667eea] py-4 px-[38px] rounded-[50px] text-[1.2rem] font-semibold cursor-pointer transition-all duration-300 hover:bg-[#667eea] hover:text-white hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(102,126,234,0.3)]"
+            >
               작가에게 구매 문의하기
-            </FinalSecondaryButton>
-          </FinalActions>
-          <GuaranteeText>
+            </button>
+          </div>
+          <div className="text-slate-500 text-[0.95rem] font-medium text-center">
             🛡️ 안전거래 보장 • 진품 인증 • 전액 환불 보장
-          </GuaranteeText>
-        </PricingContainer>
-      </PricingSection>
+          </div>
+        </div>
+      </section>
       
       <ChatSidebar 
         isOpen={isChatOpen} 
         onClose={() => setIsChatOpen(false)}
         artistName={artwork.artist}
       />
-    </PageContainer>
+    </div>
   )
 }
 

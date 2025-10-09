@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styled from 'styled-components'
 
 interface ChatSidebarProps {
   isOpen: boolean
@@ -13,191 +12,6 @@ interface Message {
   sender: 'user' | 'artist'
   timestamp: Date
 }
-
-const Overlay = styled.div<{ $isOpen: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.15);
-  opacity: ${props => props.$isOpen ? 1 : 0};
-  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 999;
-  pointer-events: ${props => props.$isOpen ? 'auto' : 'none'};
-`
-
-const SidebarContainer = styled.div<{ $isOpen: boolean }>`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 450px;
-  height: 100vh;
-  background: white;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
-  transform: translateX(${props => props.$isOpen ? '0' : '100%'});
-  transition: transform 0.3s ease-out;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`
-
-const Header = styled.div`
-  padding: 20px;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-`
-
-const HeaderTitle = styled.div`
-  h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  
-  p {
-    margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.9;
-  }
-`
-
-const CloseButton = styled.button`
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 5px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background 0.2s ease;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-`
-
-const MessagesContainer = styled.div`
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  background: #f8fafc;
-`
-
-const MessageBubble = styled.div<{ $sender: 'user' | 'artist' }>`
-  display: flex;
-  justify-content: ${props => props.$sender === 'user' ? 'flex-end' : 'flex-start'};
-  margin-bottom: 15px;
-`
-
-const BubbleContent = styled.div<{ $sender: 'user' | 'artist' }>`
-  max-width: 70%;
-  padding: 12px 16px;
-  border-radius: 18px;
-  background: ${props => props.$sender === 'user' 
-    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-    : 'white'};
-  color: ${props => props.$sender === 'user' ? 'white' : '#1a1a1a'};
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  word-wrap: break-word;
-`
-
-const MessageText = styled.p`
-  margin: 0;
-  line-height: 1.4;
-  font-size: 0.95rem;
-`
-
-const Timestamp = styled.span`
-  font-size: 0.75rem;
-  opacity: 0.7;
-  margin-top: 4px;
-  display: block;
-`
-
-const InputContainer = styled.div`
-  padding: 20px;
-  border-top: 1px solid #e5e7eb;
-  background: white;
-`
-
-const InputWrapper = styled.div`
-  display: flex;
-  gap: 10px;
-`
-
-const Input = styled.input`
-  flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 25px;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s ease;
-  
-  &:focus {
-    border-color: #667eea;
-  }
-  
-  &::placeholder {
-    color: #9ca3af;
-  }
-`
-
-const SendButton = styled.button`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  
-  &:hover {
-    transform: scale(1.05);
-  }
-  
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`
-
-const WelcomeMessage = styled.div`
-  text-align: center;
-  padding: 40px 20px;
-  color: #64748b;
-  
-  h4 {
-    margin: 0 0 10px 0;
-    color: #1a1a1a;
-    font-size: 1.1rem;
-  }
-  
-  p {
-    margin: 0;
-    line-height: 1.6;
-    font-size: 0.9rem;
-  }
-`
 
 const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, onClose, artistName }) => {
   const [messages, setMessages] = useState<Message[]>([])
@@ -264,53 +78,87 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, onClose, artistName }
 
   return (
     <>
-      <Overlay $isOpen={isOpen} onClick={onClose} />
-      <SidebarContainer $isOpen={isOpen}>
-        <Header>
-          <HeaderTitle>
-            <h3>{artistName}</h3>
-            <p>작가와 1:1 채팅</p>
-          </HeaderTitle>
-          <CloseButton onClick={onClose}>×</CloseButton>
-        </Header>
+      {/* Overlay */}
+      <div 
+        className={`fixed inset-0 bg-black/15 transition-all duration-300 z-[999] ${
+          isOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'
+        }`}
+        onClick={onClose}
+      />
+      
+      {/* Sidebar */}
+      <div 
+        className={`fixed top-0 right-0 w-[450px] max-md:w-full h-screen bg-white shadow-[-4px_0_20px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out z-[1000] flex flex-col ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        {/* Header */}
+        <div className="p-5 border-b border-gray-200 flex justify-between items-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+          <div>
+            <h3 className="m-0 mb-1 text-xl font-semibold">{artistName}</h3>
+            <p className="m-0 text-sm opacity-90">작가와 1:1 채팅</p>
+          </div>
+          <button 
+            onClick={onClose}
+            className="bg-none border-none text-white text-2xl cursor-pointer p-1 w-8 h-8 flex items-center justify-center rounded-full transition-all hover:bg-white/20"
+          >
+            ×
+          </button>
+        </div>
 
-        <MessagesContainer>
+        {/* Messages Container */}
+        <div className="flex-1 overflow-y-auto p-5 bg-slate-50">
           {messages.length === 0 ? (
-            <WelcomeMessage>
-              <h4>작가와 대화를 시작하세요</h4>
-              <p>
+            <div className="text-center py-10 px-5 text-slate-500">
+              <h4 className="m-0 mb-2 text-gray-900 text-lg">작가와 대화를 시작하세요</h4>
+              <p className="m-0 leading-relaxed text-sm">
                 작품에 대한 질문이나<br />
                 구매 문의를 자유롭게 해주세요
               </p>
-            </WelcomeMessage>
+            </div>
           ) : (
             messages.map(message => (
-              <MessageBubble key={message.id} $sender={message.sender}>
-                <BubbleContent $sender={message.sender}>
-                  <MessageText>{message.text}</MessageText>
-                  <Timestamp>{formatTime(message.timestamp)}</Timestamp>
-                </BubbleContent>
-              </MessageBubble>
+              <div 
+                key={message.id} 
+                className={`flex mb-4 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div className={`max-w-[70%] px-4 py-3 rounded-[18px] shadow-md break-words ${
+                  message.sender === 'user' 
+                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white' 
+                    : 'bg-white text-gray-900'
+                }`}>
+                  <p className="m-0 leading-snug text-sm">{message.text}</p>
+                  <span className="text-xs opacity-70 mt-1 block">
+                    {formatTime(message.timestamp)}
+                  </span>
+                </div>
+              </div>
             ))
           )}
           <div ref={messagesEndRef} />
-        </MessagesContainer>
+        </div>
 
-        <InputContainer>
-          <InputWrapper>
-            <Input
+        {/* Input Container */}
+        <div className="p-5 border-t border-gray-200 bg-white">
+          <div className="flex gap-2.5">
+            <input
               type="text"
               placeholder="메시지를 입력하세요..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
+              className="flex-1 px-4 py-3 border border-gray-200 rounded-[25px] text-sm outline-none transition-colors focus:border-indigo-500 placeholder:text-gray-400"
             />
-            <SendButton onClick={handleSend} disabled={!inputValue.trim()}>
+            <button 
+              onClick={handleSend} 
+              disabled={!inputValue.trim()}
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-none rounded-full w-11 h-11 flex items-center justify-center cursor-pointer transition-transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               ➤
-            </SendButton>
-          </InputWrapper>
-        </InputContainer>
-      </SidebarContainer>
+            </button>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
