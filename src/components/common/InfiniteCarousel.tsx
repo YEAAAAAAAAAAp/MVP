@@ -16,17 +16,18 @@ const scroll = keyframes`
 
 const CarouselContainer = styled.div`
   width: 100%;
-  height: 350px;
+  height: 80vh;
+  min-height: 800px;
   overflow: hidden;
   position: relative;
-  margin: 60px 0;
+  margin: 40px 0;
   
   &::before,
   &::after {
     content: '';
     position: absolute;
     top: 0;
-    width: 200px;
+    width: 300px;
     height: 100%;
     z-index: 10;
     pointer-events: none;

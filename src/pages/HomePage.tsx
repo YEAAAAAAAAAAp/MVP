@@ -14,38 +14,43 @@ const PageContainer = styled.div`
 
 const HeroSection = styled.section`
   text-align: center;
-  padding: 80px 20px 40px;
+  padding: 40px 20px 60px;
   background: white;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const MainTitle = styled.h1`
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 900;
   color: #1a1a1a;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   letter-spacing: -2px;
   
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 `
 
 const Subtitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #64748b;
   font-weight: 300;
   margin: 0;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   
   @media (max-width: 768px) {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
   }
 `
 
 const CarouselSection = styled.section`
-  padding: 40px 0;
+  padding: 80px 0 120px;
   background: transparent;
+  min-height: 120vh;
 `
 
 const FloatingArtistButton = styled.button`

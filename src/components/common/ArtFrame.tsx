@@ -16,15 +16,15 @@ const frameAnimation = keyframes`
 
 const FrameContainer = styled.div<{ $isHovered?: boolean }>`
   position: relative;
-  width: 200px;
-  height: 250px;
+  width: 500px;
+  height: 650px;
   margin: 0 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.4));
   
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px);
     animation: ${frameAnimation} 0.6s ease-in-out;
   }
 `
@@ -33,85 +33,85 @@ const Frame = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #d4af37, #ffd700, #b8860b);
-  border-radius: 15px;
-  padding: 15px;
+  border-radius: 20px;
+  padding: 25px;
   position: relative;
   
   &::before {
     content: '';
     position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
     background: linear-gradient(45deg, #8b7355, #a0895a);
-    border-radius: 8px;
+    border-radius: 12px;
   }
   
   &::after {
     content: '';
     position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    top: 22px;
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
     background: #2c2c2c;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 `
 
 const ArtworkImage = styled.img`
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
+  top: 35px;
+  left: 35px;
+  right: 35px;
+  bottom: 35px;
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
   z-index: 2;
 `
 
 const QuestionMark = styled.div`
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  top: 35px;
+  left: 35px;
+  right: 35px;
+  bottom: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  font-size: 4rem;
+  font-size: 10rem;
   font-weight: bold;
-  border-radius: 4px;
+  border-radius: 6px;
   z-index: 2;
   
   &::before {
     content: '?';
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
   }
 `
 
 const ArtInfo = styled.div`
   position: absolute;
-  bottom: -40px;
+  bottom: -60px;
   left: 0;
   right: 0;
   text-align: center;
   color: var(--text-primary);
   
   h4 {
-    margin: 0 0 5px 0;
-    font-size: var(--font-size-sm);
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
     font-weight: 600;
   }
   
   p {
     margin: 0;
-    font-size: var(--font-size-xs);
+    font-size: 0.95rem;
     color: var(--text-secondary);
   }
 `
