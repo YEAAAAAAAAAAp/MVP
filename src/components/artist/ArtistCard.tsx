@@ -19,13 +19,13 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist, size = 'small' }) => {
 
   return (
     <div 
-      className={`relative group cursor-pointer transition-all duration-300 hover:-translate-y-2 ${
+      className={`relative cursor-pointer transition-all duration-300 hover:-translate-y-2 ${
         isLarge ? 'w-full' : 'w-full'
       }`}
     >
       {/* 작품 이미지 */}
       <div 
-        className={`relative overflow-hidden rounded-2xl bg-gray-200 shadow-lg group-hover:shadow-2xl transition-shadow duration-300 ${
+        className={`relative overflow-hidden rounded-2xl bg-gray-200 shadow-lg hover:shadow-2xl transition-shadow duration-300 group ${
           isLarge ? 'h-[400px]' : 'h-[320px]'
         }`}
       >

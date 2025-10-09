@@ -52,9 +52,12 @@ const HomePage: React.FC = () => {
   }
 
   const handleSearch = (query: string) => {
-    // TODO: 실제 검색 기능 구현
     console.log('검색어:', query)
-    alert(`"${query}" 검색 기능은 준비중입니다.`)
+    
+    // 검색어를 state로 전달하며 CollectorPage로 이동
+    navigate('/art', {
+      state: { searchQuery: query }
+    })
   }
 
   const handleScrollToCarousel = () => {

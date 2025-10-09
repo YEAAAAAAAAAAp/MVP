@@ -7,7 +7,7 @@ interface FeaturedArtistsProps {
 
 const FeaturedArtists: React.FC<FeaturedArtistsProps> = ({ artists }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const itemsPerPage = 3
+  const itemsPerPage = 1 // 한 번에 1장씩 이동
 
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - itemsPerPage))
@@ -15,13 +15,12 @@ const FeaturedArtists: React.FC<FeaturedArtistsProps> = ({ artists }) => {
 
   const handleNext = () => {
     setCurrentIndex((prev) => 
-      Math.min(artists.length - itemsPerPage, prev + itemsPerPage)
+      Math.min(artists.length - 3, prev + itemsPerPage) // 3개 표시되므로 마지막에서 3번째까지만
     )
   }
 
-  const visibleArtists = artists.slice(currentIndex, currentIndex + itemsPerPage)
   const canGoPrev = currentIndex > 0
-  const canGoNext = currentIndex < artists.length - itemsPerPage
+  const canGoNext = currentIndex < artists.length - 3
 
   return (
     <section className="py-16 px-8 bg-gradient-to-br from-slate-50 to-slate-100">
@@ -35,12 +34,12 @@ const FeaturedArtists: React.FC<FeaturedArtistsProps> = ({ artists }) => {
           </p>
         </div>
 
-        <div className="relative group">
+        <div className="relative">
           {/* 이전 버튼 */}
           <button
             onClick={handlePrev}
             disabled={!canGoPrev}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 text-2xl font-bold opacity-0 group-hover:opacity-100 ${
+            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 text-2xl font-bold ${
               canGoPrev 
                 ? 'hover:bg-indigo-500 hover:text-white cursor-pointer text-gray-700' 
                 : 'cursor-not-allowed text-gray-400'
@@ -50,21 +49,27 @@ const FeaturedArtists: React.FC<FeaturedArtistsProps> = ({ artists }) => {
           </button>
 
           {/* 카드 컨테이너 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
-            {visibleArtists.map((artist) => (
-              <ArtistCard 
-                key={artist.id} 
-                artist={artist} 
-                size="large"
-              />
-            ))}
+          <div className="overflow-hidden px-8">
+            <div 
+              className="flex transition-transform duration-500 ease-in-out gap-8"
+              style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
+            >
+              {artists.map((artist) => (
+                <div key={artist.id} className="flex-shrink-0" style={{ width: 'calc(33.333% - 21.33px)' }}>
+                  <ArtistCard 
+                    artist={artist} 
+                    size="large"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* 다음 버튼 */}
           <button
             onClick={handleNext}
             disabled={!canGoNext}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 text-2xl font-bold opacity-0 group-hover:opacity-100 ${
+            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center transition-all duration-300 text-2xl font-bold ${
               canGoNext 
                 ? 'hover:bg-indigo-500 hover:text-white cursor-pointer text-gray-700' 
                 : 'cursor-not-allowed text-gray-400'
@@ -76,12 +81,12 @@ const FeaturedArtists: React.FC<FeaturedArtistsProps> = ({ artists }) => {
 
         {/* 페이지 인디케이터 */}
         <div className="flex justify-center mt-8 gap-2">
-          {Array.from({ length: Math.ceil(artists.length / itemsPerPage) }).map((_, idx) => (
+          {Array.from({ length: artists.length - 2 }).map((_, idx) => (
             <button
               key={idx}
-              onClick={() => setCurrentIndex(idx * itemsPerPage)}
+              onClick={() => setCurrentIndex(idx)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                Math.floor(currentIndex / itemsPerPage) === idx
+                currentIndex === idx
                   ? 'bg-indigo-500 w-8'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}

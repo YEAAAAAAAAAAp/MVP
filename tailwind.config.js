@@ -21,7 +21,7 @@ export default {
         },
       },
       animation: {
-        'scroll': 'scroll 240s linear infinite',
+        'scroll': 'scroll 360s linear infinite',
         'float': 'float 3s ease-in-out infinite',
         'frame': 'frame 0.6s ease-in-out',
         'fadeIn': 'fadeIn 0.5s ease-out',

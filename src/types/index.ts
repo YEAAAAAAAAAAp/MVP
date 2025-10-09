@@ -5,6 +5,8 @@ export interface Artwork {
   imageUrl: string;
   price?: number;
   isAIMatch?: boolean; // 물음표 액자인지 구분
+  genre?: string; // 미술사조 (abstract, impressionism, surrealism, modern, pop, minimalism, expressionism)
+  gallery?: string; // 갤러리 정보
 }
 
 export interface Artist {

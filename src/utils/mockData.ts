@@ -6,7 +6,8 @@ export const mockArtworks = [
     artist: '시미안',
     imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=450',
     price: 1500000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'expressionism'
   },
   {
     id: '2',
@@ -14,15 +15,17 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=300&h=300',
     price: 2300000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'modern'
   },
   {
     id: '25',
     title: '추상적 사고',
     artist: '김아트',
-    imageUrl: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=300&h=400',
+    imageUrl: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=300&h=400',
     price: 2800000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'abstract'
   },
   {
     id: '26',
@@ -30,15 +33,17 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=300&h=450',
     price: 3200000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'impressionism'
   },
   {
     id: '27',
     title: '색의 향연',
     artist: '김아트',
-    imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=300&h=380',
+    imageUrl: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=300&h=380',
     price: 2100000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'pop'
   },
   {
     id: '28',
@@ -46,7 +51,8 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&h=420',
     price: 2600000,
-    gallery: '강남 아트스페이스'
+    gallery: '강남 아트스페이스',
+    genre: 'minimalism'
   },
   {
     id: '29',
@@ -54,7 +60,8 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=300&h=350',
     price: 3500000,
-    gallery: '홍대 갤러리'
+    gallery: '홍대 갤러리',
+    genre: 'modern'
   },
   {
     id: '30',
@@ -62,7 +69,8 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&h=480',
     price: 2900000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'impressionism'
   },
   {
     id: '31',
@@ -70,7 +78,8 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=300&h=360',
     price: 3100000,
-    gallery: '인사동 아트센터'
+    gallery: '인사동 아트센터',
+    genre: 'minimalism'
   },
   {
     id: '32',
@@ -78,7 +87,8 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=440',
     price: 2700000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'modern'
   },
   {
     id: '33',
@@ -86,15 +96,17 @@ export const mockArtworks = [
     artist: '김아트',
     imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=390',
     price: 3400000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'abstract'
   },
   {
     id: '34',
     title: '미래의 서사',
     artist: '김아트',
-    imageUrl: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=300&h=410',
+    imageUrl: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=300&h=410',
     price: 3800000,
-    gallery: '명동 갤러리'
+    gallery: '명동 갤러리',
+    genre: 'surrealism'
   },
   {
     id: '3',
@@ -102,7 +114,8 @@ export const mockArtworks = [
     artist: '이창작',
     imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=500',
     price: 1800000,
-    gallery: '강남 아트스페이스'
+    gallery: '강남 아트스페이스',
+    genre: 'impressionism'
   },
   {
     id: '4',
@@ -110,7 +123,8 @@ export const mockArtworks = [
     artist: '박미술',
     imageUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=300&h=380',
     price: 3200000,
-    gallery: '홍대 갤러리'
+    gallery: '홍대 갤러리',
+    genre: 'pop'
   },
   {
     id: '5',
@@ -118,7 +132,8 @@ export const mockArtworks = [
     artist: '최예술',
     imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=420',
     price: 2100000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'expressionism'
   },
   {
     id: '6',
@@ -126,7 +141,8 @@ export const mockArtworks = [
     artist: '정작가',
     imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=350',
     price: 2800000,
-    gallery: '인사동 아트센터'
+    gallery: '인사동 아트센터',
+    genre: 'impressionism'
   },
   {
     id: '7',
@@ -134,7 +150,8 @@ export const mockArtworks = [
     artist: '한아티스트',
     imageUrl: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=300&h=480',
     price: 1700000,
-    gallery: '명동 갤러리'
+    gallery: '명동 갤러리',
+    genre: 'abstract'
   },
   {
     id: '8',
@@ -142,15 +159,17 @@ export const mockArtworks = [
     artist: '윤크리에이터',
     imageUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=300&h=400',
     price: 4100000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'surrealism'
   },
   {
     id: '9',
     title: '푸른 고요',
     artist: '강화백',
-    imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=300&h=380',
+    imageUrl: 'https://images.unsplash.com/photo-1507808973436-a4ed7b5e87c9?w=300&h=380',
     price: 1900000,
-    gallery: '부산 아트갤러리'
+    gallery: '부산 아트갤러리',
+    genre: 'impressionism'
   },
   {
     id: '10',
@@ -158,7 +177,8 @@ export const mockArtworks = [
     artist: '오예술',
     imageUrl: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&h=450',
     price: 3500000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'abstract'
   },
   {
     id: '11',
@@ -166,7 +186,8 @@ export const mockArtworks = [
     artist: '서작가',
     imageUrl: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=300&h=320',
     price: 2200000,
-    gallery: '강남 아트스페이스'
+    gallery: '강남 아트스페이스',
+    genre: 'minimalism'
   },
   {
     id: '12',
@@ -174,7 +195,8 @@ export const mockArtworks = [
     artist: '신화가',
     imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&h=500',
     price: 2900000,
-    gallery: '홍대 갤러리'
+    gallery: '홍대 갤러리',
+    genre: 'expressionism'
   },
   {
     id: '13',
@@ -182,7 +204,8 @@ export const mockArtworks = [
     artist: '임창작',
     imageUrl: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=300&h=400',
     price: 1600000,
-    gallery: '인사동 아트센터'
+    gallery: '인사동 아트센터',
+    genre: 'impressionism'
   },
   {
     id: '14',
@@ -190,7 +213,8 @@ export const mockArtworks = [
     artist: '문미술',
     imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=480',
     price: 3800000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'minimalism'
   },
   {
     id: '15',
@@ -198,15 +222,17 @@ export const mockArtworks = [
     artist: '안아티스트',
     imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=350',
     price: 2500000,
-    gallery: '명동 갤러리'
+    gallery: '명동 갤러리',
+    genre: 'expressionism'
   },
   {
     id: '16',
     title: '우주의 신비',
     artist: '배예술',
-    imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=300&h=420',
+    imageUrl: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300&h=420',
     price: 4500000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'surrealism'
   },
   {
     id: '17',
@@ -214,7 +240,8 @@ export const mockArtworks = [
     artist: '곽작가',
     imageUrl: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&h=380',
     price: 1800000,
-    gallery: '부산 아트갤러리'
+    gallery: '부산 아트갤러리',
+    genre: 'abstract'
   },
   {
     id: '18',
@@ -222,7 +249,8 @@ export const mockArtworks = [
     artist: '남화백',
     imageUrl: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=300&h=460',
     price: 2700000,
-    gallery: '강남 아트스페이스'
+    gallery: '강남 아트스페이스',
+    genre: 'impressionism'
   },
   {
     id: '19',
@@ -230,7 +258,8 @@ export const mockArtworks = [
     artist: '진크리에이터',
     imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&h=340',
     price: 3300000,
-    gallery: '홍대 갤러리'
+    gallery: '홍대 갤러리',
+    genre: 'surrealism'
   },
   {
     id: '20',
@@ -238,7 +267,8 @@ export const mockArtworks = [
     artist: '유미술',
     imageUrl: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=300&h=490',
     price: 2100000,
-    gallery: '인사동 아트센터'
+    gallery: '인사동 아트센터',
+    genre: 'impressionism'
   },
   {
     id: '21',
@@ -246,7 +276,8 @@ export const mockArtworks = [
     artist: '하예술',
     imageUrl: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=300&h=360',
     price: 3600000,
-    gallery: '서울 현대미술관'
+    gallery: '서울 현대미술관',
+    genre: 'modern'
   },
   {
     id: '22',
@@ -254,15 +285,17 @@ export const mockArtworks = [
     artist: '조아티스트',
     imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=410',
     price: 2800000,
-    gallery: '명동 갤러리'
+    gallery: '명동 갤러리',
+    genre: 'impressionism'
   },
   {
     id: '23',
     title: '달빛 소나타',
     artist: '전작가',
-    imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=300&h=470',
+    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&h=470',
     price: 4200000,
-    gallery: 'ARTRA 갤러리'
+    gallery: 'ARTRA 갤러리',
+    genre: 'pop'
   },
   {
     id: '24',
@@ -270,7 +303,8 @@ export const mockArtworks = [
     artist: '채화백',
     imageUrl: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&h=330',
     price: 1950000,
-    gallery: '부산 아트갤러리'
+    gallery: '부산 아트갤러리',
+    genre: 'pop'
   }
 ]
 
@@ -280,31 +314,31 @@ export const mockArtists = [
   {
     id: 'artist-1',
     name: '시미안',
-    representativeImage: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500',
     genre: '추상표현주의'
   },
   {
     id: 'artist-2',
     name: '김아트',
-    representativeImage: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=400&h=500',
     genre: '현대미술'
   },
   {
     id: 'artist-3',
     name: '이창작',
-    representativeImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500',
     genre: '미니멀리즘'
   },
   {
     id: 'artist-4',
     name: '박미술',
-    representativeImage: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=500',
     genre: '팝아트'
   },
   {
     id: 'artist-5',
     name: '최예술',
-    representativeImage: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&h=500',
     genre: '인상주의'
   },
   
@@ -312,25 +346,25 @@ export const mockArtists = [
   {
     id: 'artist-6',
     name: '정추상',
-    representativeImage: 'https://images.unsplash.com/photo-1577720643178-44d22d3f3b8f?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=500',
     genre: '추상화'
   },
   {
     id: 'artist-7',
     name: '한모던',
-    representativeImage: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=400&h=500',
     genre: '추상화'
   },
   {
     id: 'artist-8',
     name: '윤컬러',
-    representativeImage: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&h=500',
     genre: '추상화'
   },
   {
     id: 'artist-9',
     name: '강패턴',
-    representativeImage: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=400&h=500',
     genre: '추상화'
   },
   
@@ -338,25 +372,25 @@ export const mockArtists = [
   {
     id: 'artist-10',
     name: '송빛',
-    representativeImage: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&h=500',
     genre: '인상주의'
   },
   {
     id: 'artist-11',
     name: '류자연',
-    representativeImage: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&h=500',
     genre: '인상주의'
   },
   {
     id: 'artist-12',
     name: '임풍경',
-    representativeImage: 'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400&h=500',
     genre: '인상주의'
   },
   {
     id: 'artist-13',
     name: '서햇살',
-    representativeImage: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=400&h=500',
     genre: '인상주의'
   },
   
@@ -364,25 +398,25 @@ export const mockArtists = [
   {
     id: 'artist-14',
     name: '오드림',
-    representativeImage: 'https://images.unsplash.com/photo-1577720643178-44d22d3f3b8f?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=400&h=500',
     genre: '초현실주의'
   },
   {
     id: 'artist-15',
     name: '전상상',
-    representativeImage: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1507808973436-a4ed7b5e87c9?w=400&h=500',
     genre: '초현실주의'
   },
   {
     id: 'artist-16',
     name: '민환상',
-    representativeImage: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=400&h=500',
     genre: '초현실주의'
   },
   {
     id: 'artist-17',
     name: '배몽환',
-    representativeImage: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&h=500&fit=crop',
+    representativeImage: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&h=500',
     genre: '초현실주의'
   }
 ]

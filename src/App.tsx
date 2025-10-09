@@ -21,6 +21,7 @@ import ArtistProfilePage from './pages/ArtistProfilePage'
 // Components
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'
+import ScrollToTop from './components/common/ScrollToTop'
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -36,6 +37,7 @@ const MainContent = styled.main`
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <AppContainer>
         <Header />
         <MainContent>
@@ -43,6 +45,7 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/artist" element={<ArtistPage />} />
             <Route path="/artist/:artistId" element={<ArtistProfilePage />} />
+            <Route path="/art" element={<CollectorPage />} />
             <Route path="/collector" element={<CollectorPage />} />
             <Route path="/artwork/:id" element={<ArtworkDetailPage />} />
             <Route path="/ai-match-result" element={<AIMatchResultPage />} />
