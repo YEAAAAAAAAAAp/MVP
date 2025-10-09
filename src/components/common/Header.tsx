@@ -14,27 +14,27 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white border-b border-gray-200 py-4 sticky top-0 z-[100] shadow-sm">
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-4">
-        <h1 className="text-2xl font-bold text-blue-600 m-0">ARTRA</h1>
-        
-        <div className="flex gap-6 md:gap-4">
-          <Link 
-            to="/" 
-            className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600"
-          >
-            홈
+        <div className="flex items-center gap-8">
+          <Link to="/" className="no-underline">
+            <h1 className="text-2xl font-bold text-blue-600 m-0 cursor-pointer hover:text-blue-700 transition-colors">
+              ARTRA
+            </h1>
           </Link>
-          <Link 
-            to="/artist" 
-            className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600"
-          >
-            아티스트
-          </Link>
-          <Link 
-            to="/collector" 
-            className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600"
-          >
-            콜렉터
-          </Link>
+          
+          <div className="flex gap-6 md:gap-4">
+            <Link 
+              to="/collector" 
+              className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600 tracking-wider"
+            >
+              ART
+            </Link>
+            <Link 
+              to="/artist" 
+              className="text-gray-800 font-medium no-underline transition-colors hover:text-blue-600 tracking-wider"
+            >
+              ARTIST
+            </Link>
+          </div>
         </div>
         
         <div className="flex items-center gap-4">

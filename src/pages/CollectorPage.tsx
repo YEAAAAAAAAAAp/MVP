@@ -1,41 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ArtworkFilter, { FilterOptions } from '../components/collector/ArtworkFilter'
+import ArtworkGallery from '../components/collector/ArtworkGallery'
+import { mockArtworks } from '../utils/mockData'
 
 const CollectorPage: React.FC = () => {
+  const [filteredArtworks, setFilteredArtworks] = useState(mockArtworks)
+
+  const handleFilterChange = (filters: FilterOptions) => {
+    // TODO: 실제 필터링 로직 구현
+    console.log('필터 변경:', filters)
+    
+    let filtered = [...mockArtworks]
+    
+    // 가격 범위 필터링
+    if (filters.priceRange !== 'all') {
+      if (filters.priceRange === '1000+') {
+        filtered = filtered.filter(art => art.price && art.price >= 10000000)
+      } else {
+        const [minPrice, maxPrice] = filters.priceRange.split('-').map(v => parseInt(v) * 10000)
+        filtered = filtered.filter(art => 
+          art.price && art.price >= minPrice && art.price <= maxPrice
+        )
+      }
+    }
+    
+    // 정렬
+    if (filters.sortBy === 'price-low') {
+      filtered.sort((a, b) => (a.price || 0) - (b.price || 0))
+    } else if (filters.sortBy === 'price-high') {
+      filtered.sort((a, b) => (b.price || 0) - (a.price || 0))
+    }
+    
+    setFilteredArtworks(filtered)
+  }
+
   return (
-    <div className="py-8 px-4 max-w-7xl mx-auto">
-      <h1 className="text-blue-600 mb-8 text-center text-4xl font-bold">
-        콜렉터 페이지
-      </h1>
+    <div className="min-h-screen bg-white">
+      {/* 필터 영역 */}
+      <ArtworkFilter 
+        onFilterChange={handleFilterChange}
+      />
       
-      <section className="bg-gray-50 p-8 rounded-xl mb-8">
-        <h2 className="text-2xl font-semibold mb-6">콜렉터를 위한 기능</h2>
-        <ul className="list-none grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 m-0 p-0">
-          <li className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-amber-500 mb-3 text-xl font-semibold">
-              AI 기반 작품 탐색
-            </h3>
-            <p className="text-gray-700">
-              AI가 추천하는 맞춤형 작품과 아티스트의 스토리를 탐색할 수 있습니다.
-            </p>
-          </li>
-          <li className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-amber-500 mb-3 text-xl font-semibold">
-              진품 보장 거래
-            </h3>
-            <p className="text-gray-700">
-              진품 인증과 가격 정보를 제공하여 안심하고 거래할 수 있습니다.
-            </p>
-          </li>
-          <li className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-amber-500 mb-3 text-xl font-semibold">
-              아티스트 직접 소통
-            </h3>
-            <p className="text-gray-700">
-              내부 채팅 기능으로 아티스트와 직접 소통하며 맞춤형 견적을 받을 수 있습니다.
-            </p>
-          </li>
-        </ul>
-      </section>
+      {/* 작품 갤러리 */}
+      <ArtworkGallery artworks={filteredArtworks} />
     </div>
   )
 }
