@@ -93,7 +93,7 @@ const ArtistDashboardPage: React.FC = () => {
               <p className="text-gray-600">안녕하세요, {user?.name}님! 오늘도 멋진 작품 활동을 응원합니다.</p>
             </div>
             <button
-              onClick={() => navigate('/artist/register')}
+              onClick={() => alert('새 작품 등록 기능은 현재 구현중입니다.')}
               className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               새 작품 등록
@@ -205,7 +205,10 @@ const ArtistDashboardPage: React.FC = () => {
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold text-gray-900">내 작품 관리</h3>
-                  <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                  <button 
+                    onClick={() => alert('새 작품 추가 기능은 현재 구현중입니다.')}
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                  >
                     새 작품 추가
                   </button>
                 </div>
@@ -229,8 +232,11 @@ const ArtistDashboardPage: React.FC = () => {
                           <span>👁️ {artwork.views}</span>
                           <span>❤️ {artwork.likes}</span>
                         </div>
-                        <div className="mt-3 flex space-x-2">
-                          <button className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors">
+                        <div className="mt-4 flex space-x-2">
+                          <button 
+                            onClick={() => alert('작품 수정 기능은 현재 구현중입니다.')}
+                            className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors"
+                          >
                             수정
                           </button>
                           <button 
@@ -255,14 +261,20 @@ const ArtistDashboardPage: React.FC = () => {
                   <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
                     <h4 className="font-semibold text-gray-900 mb-3">AI 추천 최적화</h4>
                     <p className="text-gray-600 text-sm mb-4">작품 태그와 설명을 개선하여 AI 추천 알고리즘에 더 잘 노출되도록 하세요.</p>
-                    <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                    <button 
+                      onClick={() => alert('AI 추천 최적화 기능은 현재 구현중입니다.')}
+                      className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                    >
                       최적화하기
                     </button>
                   </div>
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
                     <h4 className="font-semibold text-gray-900 mb-3">소셜 미디어 연동</h4>
                     <p className="text-gray-600 text-sm mb-4">인스타그램, 페이스북 등 소셜 미디어와 연동하여 작품을 홍보하세요.</p>
-                    <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <button 
+                      onClick={() => alert('소셜 미디어 연동 기능은 현재 구현중입니다.')}
+                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                    >
                       연동하기
                     </button>
                   </div>
@@ -301,7 +313,10 @@ const ArtistDashboardPage: React.FC = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{order.date}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <button className="text-indigo-600 hover:text-indigo-900 transition-colors">
+                            <button 
+                              onClick={() => alert('거래관리 상세보기 기능은 현재 구현중입니다.')}
+                              className="text-indigo-600 hover:text-indigo-900 transition-colors"
+                            >
                               상세보기
                             </button>
                           </td>

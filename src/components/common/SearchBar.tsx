@@ -38,8 +38,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           <button
             type="button"
             onClick={() => {
-              setSearchQuery('추상화')
-              if (onSearch) onSearch('추상화')
+              setSearchQuery('abstract')
+              if (onSearch) onSearch('abstract')
             }}
             className="px-4 py-1.5 bg-gray-100 text-gray-700 border-none rounded-full text-sm cursor-pointer transition-all duration-200 hover:bg-gray-200"
           >
@@ -48,32 +48,52 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           <button
             type="button"
             onClick={() => {
-              setSearchQuery('풍경화')
-              if (onSearch) onSearch('풍경화')
+              setSearchQuery('impressionism')
+              if (onSearch) onSearch('impressionism')
             }}
             className="px-4 py-1.5 bg-gray-100 text-gray-700 border-none rounded-full text-sm cursor-pointer transition-all duration-200 hover:bg-gray-200"
           >
-            #풍경화
+            #인상주의
           </button>
           <button
             type="button"
             onClick={() => {
-              setSearchQuery('초상화')
-              if (onSearch) onSearch('초상화')
+              setSearchQuery('surrealism')
+              if (onSearch) onSearch('surrealism')
             }}
             className="px-4 py-1.5 bg-gray-100 text-gray-700 border-none rounded-full text-sm cursor-pointer transition-all duration-200 hover:bg-gray-200"
           >
-            #초상화
+            #초현실주의
           </button>
           <button
             type="button"
             onClick={() => {
-              setSearchQuery('현대미술')
-              if (onSearch) onSearch('현대미술')
+              setSearchQuery('modern')
+              if (onSearch) onSearch('modern')
             }}
             className="px-4 py-1.5 bg-gray-100 text-gray-700 border-none rounded-full text-sm cursor-pointer transition-all duration-200 hover:bg-gray-200"
           >
             #현대미술
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery('pop')
+              if (onSearch) onSearch('pop')
+            }}
+            className="px-4 py-1.5 bg-gray-100 text-gray-700 border-none rounded-full text-sm cursor-pointer transition-all duration-200 hover:bg-gray-200"
+          >
+            #팝아트
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery('minimalism')
+              if (onSearch) onSearch('minimalism')
+            }}
+            className="px-4 py-1.5 bg-gray-100 text-gray-700 border-none rounded-full text-sm cursor-pointer transition-all duration-200 hover:bg-gray-200"
+          >
+            #미니멀리즘
           </button>
         </div>
       </form>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Artwork } from '../../types'
+import ArtworkHoverDescription from '../common/ArtworkHoverDescription'
 
 interface ArtworkCardProps {
   artwork: Artwork & { gallery?: string };
@@ -9,6 +10,7 @@ interface ArtworkCardProps {
 const ArtworkCard: React.FC<ArtworkCardProps> = ({ artwork }) => {
   const navigate = useNavigate()
   const [isLiked, setIsLiked] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -19,6 +21,8 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({ artwork }) => {
     <div 
       onClick={() => navigate(`/artwork/${artwork.id}`)}
       className="group cursor-pointer mb-10"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* 작품 이미지 */}
       <div className="relative overflow-hidden rounded-lg bg-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
@@ -28,10 +32,20 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({ artwork }) => {
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
+        {/* 호버 시 작품 설명 */}
+        {isHovered && artwork.description && (
+          <ArtworkHoverDescription
+            description={artwork.description}
+            title={artwork.title}
+            artist={artwork.artist}
+            price={artwork.price}
+          />
+        )}
+        
         {/* 좋아요 버튼 */}
         <button
           onClick={handleLikeClick}
-          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110"
+          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 z-20"
         >
           <span className="text-xl leading-none">
             {isLiked ? '❤️' : '🤍'}

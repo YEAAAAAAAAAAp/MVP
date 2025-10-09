@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Artwork } from '../../types'
+import ArtworkHoverDescription from './ArtworkHoverDescription'
 
 interface ArtFrameProps {
   artwork?: Artwork;
@@ -12,9 +13,13 @@ const ArtFrame: React.FC<ArtFrameProps> = ({
   isQuestionMark = false, 
   onClick 
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div 
       onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className="relative w-[500px] h-[650px] mx-5 cursor-pointer transition-all duration-300 drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:-translate-y-4 hover:animate-[frame_0.6s_ease-in-out]"
     >
       <div className="w-full h-full bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8860b] rounded-[20px] p-[25px] relative
@@ -37,11 +42,21 @@ const ArtFrame: React.FC<ArtFrameProps> = ({
           </div>
         ) : (
           <>
-            <img 
-              src={artwork?.imageUrl || '/placeholder-art.jpg'} 
-              alt={artwork?.title || 'Artwork'}
-              className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] w-[calc(100%-70px)] h-[calc(100%-70px)] object-cover rounded-md z-[2]"
-            />
+            <div className="absolute top-[35px] left-[35px] right-[35px] bottom-[35px] z-[2] rounded-md overflow-hidden">
+              <img 
+                src={artwork?.imageUrl || '/placeholder-art.jpg'} 
+                alt={artwork?.title || 'Artwork'}
+                className="w-full h-full object-cover"
+              />
+              {isHovered && artwork?.description && (
+                <ArtworkHoverDescription
+                  description={artwork.description}
+                  title={artwork.title}
+                  artist={artwork.artist}
+                  price={artwork.price}
+                />
+              )}
+            </div>
             <div className="absolute -bottom-[80px] left-0 right-0 text-center text-gray-800">
               <h4 className="m-0 mb-2 text-lg font-semibold">
                 {artwork?.title || 'Unknown Title'}

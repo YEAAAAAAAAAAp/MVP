@@ -290,7 +290,10 @@ const CollectorDashboardPage: React.FC = () => {
                           >
                             상세보기
                           </button>
-                          <button className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors">
+                          <button 
+                            onClick={() => alert('재판매 기능은 현재 구현중입니다.')}
+                            className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors"
+                          >
                             재판매
                           </button>
                         </div>
@@ -333,11 +336,17 @@ const CollectorDashboardPage: React.FC = () => {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{purchase.date}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             <div className="flex space-x-2">
-                              <button className="text-indigo-600 hover:text-indigo-900 transition-colors">
+                              <button 
+                                onClick={() => alert('구매내역 상세보기 기능은 현재 구현중입니다.')}
+                                className="text-indigo-600 hover:text-indigo-900 transition-colors"
+                              >
                                 상세보기
                               </button>
                               {purchase.status === '배송중' && (
-                                <button className="text-green-600 hover:text-green-900 transition-colors">
+                                <button 
+                                  onClick={() => alert('배송추적 기능은 현재 구현중입니다.')}
+                                  className="text-green-600 hover:text-green-900 transition-colors"
+                                >
                                   배송추적
                                 </button>
                               )}
@@ -356,7 +365,10 @@ const CollectorDashboardPage: React.FC = () => {
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold text-gray-900">AI 맞춤 추천</h3>
-                  <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                  <button 
+                    onClick={() => alert('추천 새로고침 기능은 현재 구현중입니다.')}
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                  >
                     추천 새로고침
                   </button>
                 </div>
