@@ -26,7 +26,7 @@ const ArtworkFilter: React.FC<ArtworkFilterProps> = ({ onFilterChange }) => {
   }
 
   return (
-    <div className="bg-white sticky top-[73px] z-50">
+    <div className="bg-white sticky top-[72px] z-50 border-b border-gray-200">
       {/* 필터 바 */}
       <div className="py-4 px-6">
         <div className="flex justify-between items-center">
