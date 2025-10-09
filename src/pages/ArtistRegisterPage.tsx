@@ -168,26 +168,26 @@ const SubmitButton = styled.button`
   }
 `
 
-const LoginLink = styled.div`
-  text-align: center;
-  font-size: 0.95rem;
-  color: #64748b;
-  
-  button {
-    background: none;
-    border: none;
-    color: #667eea;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: underline;
-    padding: 0;
-    margin-left: 5px;
-    
-    &:hover {
-      color: #764ba2;
-    }
-  }
-`
+// const LoginLink = styled.div`
+//   text-align: center;
+//   font-size: 0.95rem;
+//   color: #64748b;
+//   
+//   button {
+//     background: none;
+//     border: none;
+//     color: #667eea;
+//     font-weight: 600;
+//     cursor: pointer;
+//     text-decoration: underline;
+//     padding: 0;
+//     margin-left: 5px;
+//     
+//     &:hover {
+//       color: #764ba2;
+//     }
+//   }
+// `
 
 const BackButton = styled.button`
   background: none;

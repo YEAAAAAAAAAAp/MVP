@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
-import { mockArtworks } from '../utils/mockData'
+// import { mockArtworks } from '../utils/mockData'
 
 const CollectorDashboardPage: React.FC = () => {
   const navigate = useNavigate()

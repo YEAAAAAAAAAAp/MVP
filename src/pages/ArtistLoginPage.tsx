@@ -201,20 +201,20 @@ const BackButton = styled.button`
   }
 `
 
-const AlertBox = styled.div`
-  background: #fef3c7;
-  border-left: 4px solid #f59e0b;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  
-  p {
-    margin: 0;
-    color: #92400e;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-`
+// const AlertBox = styled.div`
+//   background: #fef3c7;
+//   border-left: 4px solid #f59e0b;
+//   padding: 12px;
+//   border-radius: 8px;
+//   margin-bottom: 20px;
+//   
+//   p {
+//     margin: 0;
+//     color: #92400e;
+//     font-size: 0.9rem;
+//     line-height: 1.5;
+//   }
+// `
 
 const ArtistLoginPage: React.FC = () => {
   const navigate = useNavigate()

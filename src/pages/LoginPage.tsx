@@ -255,20 +255,20 @@ const RegisterLink = styled.div`
   }
 `
 
-const InfoBox = styled.div<{ $type: 'artist' | 'collector' }>`
-  background: ${props => props.$type === 'artist' ? '#fef3c7' : '#dbeafe'};
-  border-left: 4px solid ${props => props.$type === 'artist' ? '#f59e0b' : '#3b82f6'};
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  
-  p {
-    margin: 0;
-    color: ${props => props.$type === 'artist' ? '#92400e' : '#1e40af'};
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-`
+// const InfoBox = styled.div<{ $type: 'artist' | 'collector' }>`
+//   background: ${props => props.$type === 'artist' ? '#fef3c7' : '#dbeafe'};
+//   border-left: 4px solid ${props => props.$type === 'artist' ? '#f59e0b' : '#3b82f6'};
+//   padding: 12px;
+//   border-radius: 8px;
+//   margin-bottom: 20px;
+//   
+//   p {
+//     margin: 0;
+//     color: ${props => props.$type === 'artist' ? '#92400e' : '#1e40af'};
+//     font-size: 0.9rem;
+//     line-height: 1.5;
+//   }
+// `
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate()
